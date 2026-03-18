@@ -1,0 +1,17 @@
+aid: ssc-geneva
+url: https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/apis.yml
+apis:
+- aid: ssc-geneva:ssc-geneva-api
+  name: SS&C Geneva Fund Accounting API
+  tags:
+  - Financial Services
+  - Fund Accounting
+  - Asset Management
+  image: https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/image.png
+  humanURL: https://www.ssctech.com/
+  baseURL: https://api.ssctech.example.com
+  properties:
+  - url: https://www.ssctech.com/
+    type: Documentation
+  description: >-
+    SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and administrators. APIs enable NAV calculation, trade processing, investor accounting, and regulatory reporting across multi-asset portfolios.
