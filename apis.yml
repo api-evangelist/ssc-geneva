@@ -15,3 +15,23 @@ apis:
     type: Documentation
   description: >-
     SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and administrators. APIs enable NAV calculation, trade processing, investor accounting, and regulatory reporting across multi-asset portfolios.
+
+common:
+- url: https://www.ssctech.com/
+  type: Website
+- url: https://www.ssctech.com/products
+  type: Portal
+- url: https://www.ssctech.com/blog
+  type: Blog
+- url: https://www.ssctech.com/about/support-client-portals
+  type: Support
+- url: https://www.ssctech.com/about/privacy
+  type: PrivacyPolicy
+- url: https://www.ssctech.com/resources
+  type: Documentation
+
+maintainers:
+- name: Kin Lane
+  email: kin@apievangelist.com
+
+modified: '2026-03-18'
