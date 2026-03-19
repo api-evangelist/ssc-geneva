@@ -1,0 +1,589 @@
+openapi: 3.1.0
+info:
+  title: SS&C Geneva Fund Accounting API
+  description: >-
+    SS&C Geneva provides fund accounting and portfolio management APIs for asset
+    managers, hedge funds, and fund administrators. APIs enable NAV calculation,
+    trade processing, investor accounting, position management, and regulatory
+    reporting across multi-asset portfolios. Geneva is an enterprise system with
+    REST APIs for integration with external systems.
+  version: "1.0"
+  contact:
+    name: SS&C Technologies Support
+    url: https://www.ssctech.com/about/support-client-portals
+  license:
+    name: SS&C Geneva License Agreement
+    url: https://www.ssctech.com/about/privacy
+servers:
+  - url: https://api.ssctech.example.com/geneva/v1
+    description: SS&C Geneva API (tenant-specific URL)
+
+security:
+  - BearerAuth: []
+  - BasicAuth: []
+
+tags:
+  - name: Portfolios
+    description: Portfolio and fund management
+  - name: Positions
+    description: Portfolio positions and holdings
+  - name: Trades
+    description: Trade capture and processing
+  - name: NAV
+    description: Net Asset Value calculation and reporting
+  - name: Investors
+    description: Investor accounts and capital activity
+
+paths:
+  /portfolios:
+    get:
+      operationId: listPortfolios
+      summary: List portfolios
+      description: >-
+        Returns a list of portfolios (funds) accessible to the authenticated user.
+        Supports filtering by fund type, currency, manager, and status.
+      tags:
+        - Portfolios
+      parameters:
+        - name: fundType
+          in: query
+          schema:
+            type: string
+            enum: [HEDGE_FUND, MUTUAL_FUND, PE_FUND, SEPARATE_ACCOUNT, FUND_OF_FUNDS]
+        - name: currency
+          in: query
+          schema:
+            type: string
+            description: Base currency ISO code
+          example: "USD"
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [ACTIVE, INACTIVE, CLOSED]
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: size
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of portfolios
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortfolioListResponse'
+        '401':
+          description: Unauthorized
+
+  /portfolios/{portfolioId}:
+    get:
+      operationId: getPortfolio
+      summary: Retrieve a portfolio
+      description: Returns detailed information for a specific portfolio including AUM and metadata.
+      tags:
+        - Portfolios
+      parameters:
+        - $ref: '#/components/parameters/PortfolioId'
+      responses:
+        '200':
+          description: Portfolio details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+        '404':
+          description: Portfolio not found
+
+  /portfolios/{portfolioId}/positions:
+    get:
+      operationId: getPortfolioPositions
+      summary: Get portfolio positions
+      description: >-
+        Returns current or historical positions for a portfolio as of a specified
+        date. Includes long and short positions across equities, fixed income,
+        derivatives, and other asset classes.
+      tags:
+        - Positions
+      parameters:
+        - $ref: '#/components/parameters/PortfolioId'
+        - name: asOfDate
+          in: query
+          required: true
+          description: Position date (ISO 8601 date)
+          schema:
+            type: string
+            format: date
+          example: "2026-03-17"
+        - name: includeExpired
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: assetClass
+          in: query
+          schema:
+            type: string
+            enum: [EQUITY, FIXED_INCOME, DERIVATIVE, CURRENCY, COMMODITY, REAL_ESTATE, PRIVATE_EQUITY]
+      responses:
+        '200':
+          description: Portfolio positions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PositionListResponse'
+
+  /portfolios/{portfolioId}/trades:
+    get:
+      operationId: listTrades
+      summary: List trades for a portfolio
+      description: Returns trade history for a portfolio within a date range.
+      tags:
+        - Trades
+      parameters:
+        - $ref: '#/components/parameters/PortfolioId'
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: tradeStatus
+          in: query
+          schema:
+            type: string
+            enum: [PENDING, SETTLED, CANCELLED, FAILED]
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Trade list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradeListResponse'
+
+    post:
+      operationId: createTrade
+      summary: Submit a new trade
+      description: >-
+        Creates a new trade record in Geneva for processing and settlement.
+        Supports equity, fixed income, FX, and derivative transactions.
+      tags:
+        - Trades
+      parameters:
+        - $ref: '#/components/parameters/PortfolioId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TradeCreate'
+      responses:
+        '201':
+          description: Trade created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trade'
+        '400':
+          description: Invalid trade data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /portfolios/{portfolioId}/nav:
+    get:
+      operationId: getPortfolioNAV
+      summary: Get NAV for a portfolio
+      description: >-
+        Returns the Net Asset Value (NAV) calculation for a portfolio on a specified
+        date, including per-share/unit NAV, total NAV, and component breakdown.
+      tags:
+        - NAV
+      parameters:
+        - $ref: '#/components/parameters/PortfolioId'
+        - name: navDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          example: "2026-03-17"
+        - name: navType
+          in: query
+          schema:
+            type: string
+            enum: [OFFICIAL, ESTIMATED, PRELIMINARY]
+            default: OFFICIAL
+      responses:
+        '200':
+          description: NAV calculation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NAVReport'
+        '404':
+          description: NAV not calculated for specified date
+
+  /portfolios/{portfolioId}/investors:
+    get:
+      operationId: listInvestors
+      summary: List investors in a portfolio
+      description: Returns investor accounts with capital allocations for a fund.
+      tags:
+        - Investors
+      parameters:
+        - $ref: '#/components/parameters/PortfolioId'
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [ACTIVE, REDEEMED, PENDING]
+      responses:
+        '200':
+          description: Investor list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvestorListResponse'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    BasicAuth:
+      type: http
+      scheme: basic
+
+  parameters:
+    PortfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Geneva portfolio identifier
+      schema:
+        type: string
+      example: "FUND-001"
+
+  schemas:
+    Portfolio:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+          description: Unique portfolio identifier in Geneva
+        name:
+          type: string
+        shortName:
+          type: string
+        fundType:
+          type: string
+          enum: [HEDGE_FUND, MUTUAL_FUND, PE_FUND, SEPARATE_ACCOUNT, FUND_OF_FUNDS]
+        baseCurrency:
+          type: string
+          pattern: "^[A-Z]{3}$"
+        inceptionDate:
+          type: string
+          format: date
+        closingDate:
+          type: string
+          format: date
+          nullable: true
+        status:
+          type: string
+          enum: [ACTIVE, INACTIVE, CLOSED]
+        investmentManager:
+          type: string
+        administrator:
+          type: string
+        custodian:
+          type: string
+        aum:
+          type: number
+          description: Assets Under Management in base currency
+        aumDate:
+          type: string
+          format: date
+        benchmarkIndex:
+          type: string
+
+    PortfolioListResponse:
+      type: object
+      properties:
+        portfolios:
+          type: array
+          items:
+            $ref: '#/components/schemas/Portfolio'
+        totalCount:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+
+    Position:
+      type: object
+      properties:
+        positionId:
+          type: string
+        portfolioId:
+          type: string
+        securityId:
+          type: string
+        isin:
+          type: string
+        ticker:
+          type: string
+        securityName:
+          type: string
+        assetClass:
+          type: string
+        asOfDate:
+          type: string
+          format: date
+        quantity:
+          type: number
+          description: Quantity held (negative for short positions)
+        marketValue:
+          type: number
+          description: Market value in portfolio base currency
+        costBasis:
+          type: number
+        unrealizedGainLoss:
+          type: number
+        currency:
+          type: string
+        fxRate:
+          type: number
+          description: FX rate to base currency
+        pricePerUnit:
+          type: number
+        country:
+          type: string
+        sector:
+          type: string
+        weightPercent:
+          type: number
+          description: Portfolio weight percentage
+
+    PositionListResponse:
+      type: object
+      properties:
+        positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Position'
+        asOfDate:
+          type: string
+          format: date
+        totalMarketValue:
+          type: number
+        baseCurrency:
+          type: string
+        totalPositions:
+          type: integer
+
+    Trade:
+      type: object
+      properties:
+        tradeId:
+          type: string
+        portfolioId:
+          type: string
+        tradeDate:
+          type: string
+          format: date
+        settlementDate:
+          type: string
+          format: date
+        transactionType:
+          type: string
+          enum: [BUY, SELL, SHORT_SELL, COVER, SUBSCRIBE, REDEEM, TRANSFER_IN, TRANSFER_OUT]
+        securityId:
+          type: string
+        isin:
+          type: string
+        securityName:
+          type: string
+        quantity:
+          type: number
+        price:
+          type: number
+        currency:
+          type: string
+        grossAmount:
+          type: number
+        commission:
+          type: number
+        netAmount:
+          type: number
+        status:
+          type: string
+          enum: [PENDING, SETTLED, CANCELLED, FAILED]
+        broker:
+          type: string
+        counterparty:
+          type: string
+        accrued:
+          type: number
+          description: Accrued interest for fixed income trades
+
+    TradeCreate:
+      type: object
+      required:
+        - tradeDate
+        - settlementDate
+        - transactionType
+        - securityId
+        - quantity
+        - price
+        - currency
+      properties:
+        tradeDate:
+          type: string
+          format: date
+        settlementDate:
+          type: string
+          format: date
+        transactionType:
+          type: string
+          enum: [BUY, SELL, SHORT_SELL, COVER, SUBSCRIBE, REDEEM]
+        securityId:
+          type: string
+        quantity:
+          type: number
+        price:
+          type: number
+        currency:
+          type: string
+        commission:
+          type: number
+          default: 0
+        broker:
+          type: string
+        counterparty:
+          type: string
+        externalTradeId:
+          type: string
+          description: OMS/external system trade reference
+
+    TradeListResponse:
+      type: object
+      properties:
+        trades:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trade'
+        totalCount:
+          type: integer
+        page:
+          type: integer
+
+    NAVReport:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        navDate:
+          type: string
+          format: date
+        navType:
+          type: string
+          enum: [OFFICIAL, ESTIMATED, PRELIMINARY]
+        totalNAV:
+          type: number
+          description: Total NAV in base currency
+        navPerUnit:
+          type: number
+          description: NAV per share/unit
+        unitsOutstanding:
+          type: number
+        baseCurrency:
+          type: string
+        components:
+          type: object
+          properties:
+            longPositions:
+              type: number
+            shortPositions:
+              type: number
+            cashAndEquivalents:
+              type: number
+            accruedIncome:
+              type: number
+            liabilities:
+              type: number
+        performanceReturn:
+          type: object
+          properties:
+            mtdReturn:
+              type: number
+            ytdReturn:
+              type: number
+            sinceInceptionReturn:
+              type: number
+
+    Investor:
+      type: object
+      properties:
+        investorId:
+          type: string
+        name:
+          type: string
+        entityType:
+          type: string
+          enum: [INDIVIDUAL, INSTITUTION, FUND_OF_FUNDS]
+        capitalBalance:
+          type: number
+        unitsHeld:
+          type: number
+        percentageOwnership:
+          type: number
+        inceptionDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum: [ACTIVE, REDEEMED, PENDING]
+        jurisdiction:
+          type: string
+
+    InvestorListResponse:
+      type: object
+      properties:
+        investors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Investor'
+        totalCount:
+          type: integer
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: string

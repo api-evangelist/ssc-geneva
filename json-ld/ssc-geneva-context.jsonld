@@ -1,0 +1,85 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "fibo": "https://spec.edmcouncil.org/fibo/ontology/FND/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "geneva": "https://www.ssctech.com/vocab/",
+
+    "Portfolio": "fibo:InvestmentFund",
+    "Position": "fibo:HoldingOfSecurities",
+    "Trade": "fibo:SecuritiesTransaction",
+    "Investor": "fibo:Investor",
+    "NAVReport": "geneva:NAVReport",
+
+    "portfolioId": "schema:identifier",
+    "name": "schema:name",
+    "shortName": "schema:alternateName",
+    "fundType": "schema:additionalType",
+    "baseCurrency": "schema:currency",
+    "inceptionDate": {
+      "@id": "schema:foundingDate",
+      "@type": "xsd:date"
+    },
+    "status": "schema:status",
+    "investmentManager": "schema:organizer",
+    "administrator": "schema:provider",
+    "aum": {
+      "@id": "geneva:assetsUnderManagement",
+      "@type": "xsd:decimal"
+    },
+    "aumDate": {
+      "@id": "geneva:aumAsOfDate",
+      "@type": "xsd:date"
+    },
+
+    "positionId": "schema:identifier",
+    "portfolioId_ref": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    },
+    "isin": "schema:identifier",
+    "securityName": "schema:name",
+    "assetClass": "schema:additionalType",
+    "quantity": "schema:value",
+    "marketValue": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "currency": "schema:currency",
+    "asOfDate": {
+      "@id": "schema:temporalCoverage",
+      "@type": "xsd:date"
+    },
+    "weightPercent": "geneva:portfolioWeight",
+
+    "tradeId": "schema:identifier",
+    "tradeDate": {
+      "@id": "schema:startDate",
+      "@type": "xsd:date"
+    },
+    "settlementDate": {
+      "@id": "schema:endDate",
+      "@type": "xsd:date"
+    },
+    "transactionType": "schema:additionalType",
+    "price": "schema:price",
+    "netAmount": {
+      "@id": "schema:totalPrice",
+      "@type": "xsd:decimal"
+    },
+
+    "totalNAV": {
+      "@id": "geneva:totalNAV",
+      "@type": "xsd:decimal"
+    },
+    "navPerUnit": {
+      "@id": "geneva:navPerUnit",
+      "@type": "xsd:decimal"
+    },
+    "navDate": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:date"
+    }
+  }
+}

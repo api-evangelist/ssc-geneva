@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.ssctech.com/schemas/portfolio",
+  "title": "SS&C Geneva Portfolio",
+  "description": "A fund or portfolio record in the SS&C Geneva fund accounting system",
+  "type": "object",
+  "properties": {
+    "portfolioId": {
+      "type": "string",
+      "description": "Unique Geneva portfolio identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Full legal fund name"
+    },
+    "shortName": {
+      "type": "string",
+      "description": "Abbreviated fund name"
+    },
+    "fundType": {
+      "type": "string",
+      "enum": ["HEDGE_FUND", "MUTUAL_FUND", "PE_FUND", "SEPARATE_ACCOUNT", "FUND_OF_FUNDS"],
+      "description": "Fund structure type"
+    },
+    "baseCurrency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 base currency code"
+    },
+    "inceptionDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Fund inception/launch date"
+    },
+    "closingDate": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Fund closing date; null for active funds"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["ACTIVE", "INACTIVE", "CLOSED"]
+    },
+    "investmentManager": {
+      "type": "string",
+      "description": "Name of the investment manager/GP"
+    },
+    "administrator": {
+      "type": "string",
+      "description": "Fund administrator name"
+    },
+    "custodian": {
+      "type": "string",
+      "description": "Prime broker or custodian name"
+    },
+    "aum": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Assets Under Management in base currency"
+    },
+    "aumDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date as of which AUM is calculated"
+    },
+    "benchmarkIndex": {
+      "type": "string",
+      "description": "Benchmark index identifier"
+    },
+    "legalEntity": {
+      "$ref": "#/$defs/LegalEntity"
+    },
+    "shareClasses": {
+      "type": "array",
+      "description": "Share classes within the fund",
+      "items": {
+        "$ref": "#/$defs/ShareClass"
+      }
+    }
+  },
+  "required": ["portfolioId", "name", "baseCurrency", "status"],
+  "$defs": {
+    "LegalEntity": {
+      "type": "object",
+      "properties": {
+        "legalName": {
+          "type": "string"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "Country of legal incorporation"
+        },
+        "lei": {
+          "type": "string",
+          "description": "Legal Entity Identifier (20-character LEI code)",
+          "pattern": "^[A-Z0-9]{18}\\d{2}$"
+        },
+        "regulatoryId": {
+          "type": "string",
+          "description": "Regulatory registration number"
+        }
+      }
+    },
+    "ShareClass": {
+      "type": "object",
+      "properties": {
+        "classId": {
+          "type": "string"
+        },
+        "className": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "managementFeeRate": {
+          "type": "number",
+          "description": "Annual management fee as decimal (e.g., 0.02 for 2%)"
+        },
+        "performanceFeeRate": {
+          "type": "number",
+          "description": "Performance fee rate as decimal"
+        },
+        "minInvestment": {
+          "type": "number"
+        },
+        "navPerUnit": {
+          "type": "number"
+        },
+        "unitsOutstanding": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

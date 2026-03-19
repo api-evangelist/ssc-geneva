@@ -13,6 +13,8 @@ apis:
   properties:
   - url: https://www.ssctech.com/
     type: Documentation
+  - url: openapi/ssc-geneva-fund-accounting-openapi.yml
+    type: OpenAPI
   description: >-
     SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and administrators. APIs enable NAV calculation, trade processing, investor accounting, and regulatory reporting across multi-asset portfolios.
 
@@ -29,6 +31,10 @@ common:
   type: PrivacyPolicy
 - url: https://www.ssctech.com/resources
   type: Documentation
+- url: json-schema/ssc-geneva-portfolio-schema.json
+  type: JSONSchema
+- url: json-ld/ssc-geneva-context.jsonld
+  type: JSONLDContext
 
 maintainers:
 - name: Kin Lane
