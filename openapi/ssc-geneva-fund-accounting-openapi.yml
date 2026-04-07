@@ -23,17 +23,17 @@ security:
   - BasicAuth: []
 
 tags:
+  - name: Investors
+    description: Investor accounts and capital activity
+
+  - name: NAV
+    description: Net Asset Value calculation and reporting
   - name: Portfolios
     description: Portfolio and fund management
   - name: Positions
     description: Portfolio positions and holdings
   - name: Trades
     description: Trade capture and processing
-  - name: NAV
-    description: Net Asset Value calculation and reporting
-  - name: Investors
-    description: Investor accounts and capital activity
-
 paths:
   /portfolios:
     get:
