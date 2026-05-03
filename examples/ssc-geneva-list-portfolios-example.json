@@ -1,0 +1,51 @@
+{
+  "example": "List Portfolios",
+  "operation": "listPortfolios",
+  "request": {
+    "method": "GET",
+    "url": "https://api.ssctech.example.com/geneva/v1/portfolios?fundType=HEDGE_FUND&status=ACTIVE&page=0&size=20",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": {
+      "portfolios": [
+        {
+          "portfolioId": "FUND-001",
+          "name": "Alpha Global Macro Fund LP",
+          "shortName": "AGM Fund",
+          "fundType": "HEDGE_FUND",
+          "baseCurrency": "USD",
+          "inceptionDate": "2018-01-01",
+          "status": "ACTIVE",
+          "investmentManager": "Alpha Capital Management",
+          "administrator": "SS&C Fund Services",
+          "custodian": "Goldman Sachs Prime Brokerage",
+          "aum": 1250000000.00,
+          "aumDate": "2026-04-30"
+        },
+        {
+          "portfolioId": "FUND-002",
+          "name": "Beta Equity Long/Short Fund LP",
+          "shortName": "Beta L/S",
+          "fundType": "HEDGE_FUND",
+          "baseCurrency": "USD",
+          "inceptionDate": "2020-03-15",
+          "status": "ACTIVE",
+          "investmentManager": "Beta Partners LLC",
+          "administrator": "SS&C Fund Services",
+          "custodian": "Morgan Stanley Prime",
+          "aum": 425000000.00,
+          "aumDate": "2026-04-30"
+        }
+      ],
+      "totalCount": 8,
+      "page": 0,
+      "pageSize": 20
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "example": "Get Portfolio NAV",
+  "operation": "getPortfolioNAV",
+  "request": {
+    "method": "GET",
+    "url": "https://api.ssctech.example.com/geneva/v1/portfolios/FUND-001/nav?navDate=2026-04-30&navType=OFFICIAL",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": {
+      "portfolioId": "FUND-001",
+      "navDate": "2026-04-30",
+      "navType": "OFFICIAL",
+      "totalNAV": 1248750000.00,
+      "navPerUnit": 1872.34,
+      "unitsOutstanding": 667200.00,
+      "baseCurrency": "USD",
+      "components": {
+        "longPositions": 1385000000.00,
+        "shortPositions": -185000000.00,
+        "cashAndEquivalents": 82500000.00,
+        "accruedIncome": 1250000.00,
+        "liabilities": -35000000.00
+      },
+      "performanceReturn": {
+        "mtdReturn": 0.0182,
+        "ytdReturn": 0.0724,
+        "sinceInceptionReturn": 0.8723
+      }
+    }
+  }
+}

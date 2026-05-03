@@ -1,0 +1,225 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "SS&C Geneva Fund Operations"
+  description: >-
+    Unified workflow capability for fund accounting and portfolio management
+    operations using SS&C Geneva. Enables portfolio managers, fund accountants,
+    and operations teams to manage portfolios, process trades, calculate NAV,
+    and report on investor positions across multi-asset fund structures.
+  tags:
+    - SS&C Geneva
+    - Fund Accounting
+    - Portfolio Management
+    - Asset Management
+    - Financial Services
+    - NAV Calculation
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SSC_GENEVA_API_TOKEN: SSC_GENEVA_API_TOKEN
+
+capability:
+  consumes:
+    - import: ssc-geneva-fund-accounting
+      location: ./shared/fund-accounting.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: ssc-geneva-fund-operations-api
+      description: "Unified REST API for SS&C Geneva fund operations."
+      resources:
+        - path: /v1/portfolios
+          name: portfolios
+          description: "Portfolio and fund management"
+          operations:
+            - method: GET
+              name: list-portfolios
+              description: "List portfolios with optional type, currency, and status filtering"
+              call: "ssc-geneva-fund-accounting.list-portfolios"
+              with:
+                fundType: "rest.fundType"
+                currency: "rest.currency"
+                status: "rest.status"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/portfolios/{portfolioId}
+          name: portfolio-detail
+          description: "Individual portfolio details"
+          operations:
+            - method: GET
+              name: get-portfolio
+              description: "Get portfolio details including AUM and metadata"
+              call: "ssc-geneva-fund-accounting.get-portfolio"
+              with:
+                portfolioId: "rest.portfolioId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/portfolios/{portfolioId}/positions
+          name: positions
+          description: "Portfolio positions and holdings"
+          operations:
+            - method: GET
+              name: get-portfolio-positions
+              description: "Get portfolio positions as of a specific date"
+              call: "ssc-geneva-fund-accounting.get-portfolio-positions"
+              with:
+                portfolioId: "rest.portfolioId"
+                asOfDate: "rest.asOfDate"
+                assetClass: "rest.assetClass"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/portfolios/{portfolioId}/trades
+          name: trades
+          description: "Trade capture and processing"
+          operations:
+            - method: GET
+              name: list-trades
+              description: "List trades for a portfolio in a date range"
+              call: "ssc-geneva-fund-accounting.list-trades"
+              with:
+                portfolioId: "rest.portfolioId"
+                startDate: "rest.startDate"
+                endDate: "rest.endDate"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-trade
+              description: "Submit a new trade for processing and settlement"
+              call: "ssc-geneva-fund-accounting.create-trade"
+              with:
+                portfolioId: "rest.portfolioId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/portfolios/{portfolioId}/nav
+          name: nav
+          description: "NAV calculation and reporting"
+          operations:
+            - method: GET
+              name: get-portfolio-nav
+              description: "Get NAV calculation for a portfolio on a specific date"
+              call: "ssc-geneva-fund-accounting.get-portfolio-nav"
+              with:
+                portfolioId: "rest.portfolioId"
+                navDate: "rest.navDate"
+                navType: "rest.navType"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/portfolios/{portfolioId}/investors
+          name: investors
+          description: "Investor accounting"
+          operations:
+            - method: GET
+              name: list-investors
+              description: "List investors with capital allocations for a fund"
+              call: "ssc-geneva-fund-accounting.list-investors"
+              with:
+                portfolioId: "rest.portfolioId"
+                status: "rest.status"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: ssc-geneva-fund-operations-mcp
+      transport: http
+      description: "MCP server for AI-assisted SS&C Geneva fund operations and reporting."
+      tools:
+        - name: list-portfolios
+          description: "List SS&C Geneva fund portfolios with optional filtering by type, currency, and status"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "ssc-geneva-fund-accounting.list-portfolios"
+          with:
+            fundType: "tools.fundType"
+            currency: "tools.currency"
+            status: "tools.status"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-portfolio
+          description: "Get SS&C Geneva portfolio details including AUM, manager, and share classes"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "ssc-geneva-fund-accounting.get-portfolio"
+          with:
+            portfolioId: "tools.portfolioId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-portfolio-positions
+          description: "Get portfolio positions as of a date with market values and unrealized P&L"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "ssc-geneva-fund-accounting.get-portfolio-positions"
+          with:
+            portfolioId: "tools.portfolioId"
+            asOfDate: "tools.asOfDate"
+            assetClass: "tools.assetClass"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-trades
+          description: "List trades for a portfolio within a date range with settlement status"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "ssc-geneva-fund-accounting.list-trades"
+          with:
+            portfolioId: "tools.portfolioId"
+            startDate: "tools.startDate"
+            endDate: "tools.endDate"
+            tradeStatus: "tools.tradeStatus"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-trade
+          description: "Submit a new trade to SS&C Geneva for processing and settlement"
+          hints:
+            readOnly: false
+            idempotent: false
+          call: "ssc-geneva-fund-accounting.create-trade"
+          with:
+            portfolioId: "tools.portfolioId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-portfolio-nav
+          description: "Get NAV calculation for a portfolio on a specific date with component breakdown"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "ssc-geneva-fund-accounting.get-portfolio-nav"
+          with:
+            portfolioId: "tools.portfolioId"
+            navDate: "tools.navDate"
+            navType: "tools.navType"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-investors
+          description: "List investors in a portfolio with capital balances and ownership percentages"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "ssc-geneva-fund-accounting.list-investors"
+          with:
+            portfolioId: "tools.portfolioId"
+            status: "tools.status"
+          outputParameters:
+            - type: object
+              mapping: "$."

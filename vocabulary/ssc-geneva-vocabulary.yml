@@ -1,0 +1,140 @@
+vocabulary:
+  name: SS&C Geneva Fund Accounting Vocabulary
+  description: >-
+    Key terms, concepts, and operational vocabulary for the SS&C Geneva
+    fund accounting and portfolio management platform. Covers fund structures,
+    accounting concepts, trade lifecycle, and regulatory reporting used in
+    institutional asset management.
+  version: "1.0"
+  created: "2026-05-02"
+  modified: "2026-05-02"
+  tags:
+    - SS&C Geneva
+    - Fund Accounting
+    - Financial Services
+    - Asset Management
+
+  terms:
+    - term: NAV
+      label: Net Asset Value
+      description: >-
+        The total value of a fund's assets minus its liabilities, expressed
+        either as a total or per-unit value. NAV is the fundamental pricing
+        mechanism for fund accounting and investor subscriptions/redemptions.
+        Geneva calculates NAV on a daily or periodic basis.
+      category: Accounting
+
+    - term: AUM
+      label: Assets Under Management
+      description: >-
+        The total market value of assets that a fund or investment manager
+        manages on behalf of investors. AUM is reported at a specific date
+        (AUM Date) and is a primary measure of fund scale.
+      category: Reporting
+
+    - term: Portfolio
+      label: Fund Portfolio
+      description: >-
+        A fund or investment vehicle managed within Geneva. A portfolio has
+        a unique identifier, base currency, fund type, and associated share
+        classes. Portfolios hold positions in securities across multiple
+        asset classes.
+      category: Core Concepts
+
+    - term: Position
+      label: Security Position
+      description: >-
+        A holding in a specific security within a portfolio as of a given date.
+        Positions have quantity (positive for long, negative for short),
+        market value in the portfolio base currency, and associated P&L metrics.
+      category: Core Concepts
+
+    - term: Trade
+      label: Trade
+      description: >-
+        A recorded transaction in Geneva representing the purchase, sale, or
+        other movement of a security or asset. Trades progress through a
+        lifecycle from PENDING to SETTLED. Supported types include BUY, SELL,
+        SHORT_SELL, COVER, SUBSCRIBE, REDEEM, TRANSFER_IN, TRANSFER_OUT.
+      category: Trade Processing
+
+    - term: Settlement Date
+      label: Settlement Date
+      description: >-
+        The date on which a trade is scheduled to settle — when cash and
+        securities are exchanged between counterparties. Typically T+1 for
+        equities in many markets, T+2 for others.
+      category: Trade Processing
+
+    - term: Fund Type
+      label: Fund Structure Type
+      description: >-
+        Classification of the fund's legal/investment structure. Geneva
+        supports HEDGE_FUND, MUTUAL_FUND, PE_FUND (private equity),
+        SEPARATE_ACCOUNT, and FUND_OF_FUNDS.
+      category: Core Concepts
+
+    - term: Share Class
+      label: Fund Share Class
+      description: >-
+        A distinct series within a fund offering different terms (currency,
+        fee structure, minimum investment) to different investor segments.
+        Each share class has its own NAV per unit and units outstanding.
+      category: Core Concepts
+
+    - term: Investor
+      label: Fund Investor
+      description: >-
+        An entity (individual, institution, or fund of funds) that has
+        invested capital in a fund. Investors have capital balances, units
+        held, and percentage ownership tracked in Geneva's investor accounting
+        module.
+      category: Investor Accounting
+
+    - term: NAV Type
+      label: NAV Type
+      description: >-
+        Classification of NAV calculation. OFFICIAL is the final audited NAV.
+        PRELIMINARY is calculated before final pricing. ESTIMATED is an
+        intraday or indicative calculation.
+      category: Accounting
+
+    - term: ISIN
+      label: International Securities Identification Number
+      description: >-
+        A 12-character alphanumeric code that uniquely identifies a security
+        globally. Used as the primary security identifier in Geneva for
+        cross-border positions and reporting.
+      category: Securities
+
+    - term: Asset Class
+      label: Asset Class
+      description: >-
+        The category of security held in a portfolio. Geneva supports
+        EQUITY, FIXED_INCOME, DERIVATIVE, CURRENCY, COMMODITY, REAL_ESTATE,
+        and PRIVATE_EQUITY asset classes.
+      category: Securities
+
+    - term: Unrealized Gain/Loss
+      label: Unrealized Gain or Loss
+      description: >-
+        The current profit or loss on an open position, calculated as the
+        difference between current market value and cost basis. Unrealized
+        P&L is reflected in portfolio NAV but not yet recognized for tax purposes.
+      category: Accounting
+
+    - term: Accrued Income
+      label: Accrued Income
+      description: >-
+        Income earned but not yet received, such as bond interest accrued
+        between coupon payment dates. Accrued income is included in NAV
+        calculations.
+      category: Accounting
+
+    - term: LEI
+      label: Legal Entity Identifier
+      description: >-
+        A 20-character alphanumeric code that uniquely identifies a legal
+        entity globally. Required for regulatory reporting under MiFID II,
+        EMIR, and other frameworks. Geneva tracks LEIs for funds and investors.
+      category: Regulatory

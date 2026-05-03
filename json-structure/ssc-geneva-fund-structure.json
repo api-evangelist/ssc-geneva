@@ -1,0 +1,65 @@
+{
+  "title": "SS&C Geneva Fund Structure",
+  "description": "Structure documentation for SS&C Geneva fund accounting entities",
+  "version": "1.0",
+  "structures": [
+    {
+      "name": "Portfolio",
+      "description": "A fund or portfolio record in SS&C Geneva",
+      "fields": [
+        { "name": "portfolioId", "type": "string", "required": true, "description": "Geneva portfolio identifier" },
+        { "name": "name", "type": "string", "required": true, "description": "Full legal fund name" },
+        { "name": "shortName", "type": "string", "required": false, "description": "Abbreviated fund name" },
+        { "name": "fundType", "type": "enum(HEDGE_FUND|MUTUAL_FUND|PE_FUND|SEPARATE_ACCOUNT|FUND_OF_FUNDS)", "required": false, "description": "Fund structure type" },
+        { "name": "baseCurrency", "type": "string", "required": true, "description": "ISO 4217 base currency code" },
+        { "name": "status", "type": "enum(ACTIVE|INACTIVE|CLOSED)", "required": true, "description": "Fund status" },
+        { "name": "aum", "type": "number", "required": false, "description": "Assets Under Management in base currency" },
+        { "name": "investmentManager", "type": "string", "required": false, "description": "Investment manager name" }
+      ]
+    },
+    {
+      "name": "Position",
+      "description": "A security holding in a portfolio",
+      "fields": [
+        { "name": "positionId", "type": "string", "required": true, "description": "Position identifier" },
+        { "name": "portfolioId", "type": "string", "required": true, "description": "Parent portfolio ID" },
+        { "name": "securityId", "type": "string", "required": true, "description": "Security identifier" },
+        { "name": "isin", "type": "string", "required": false, "description": "ISIN code" },
+        { "name": "ticker", "type": "string", "required": false, "description": "Exchange ticker" },
+        { "name": "assetClass", "type": "enum(EQUITY|FIXED_INCOME|DERIVATIVE|CURRENCY|COMMODITY|REAL_ESTATE|PRIVATE_EQUITY)", "required": false },
+        { "name": "quantity", "type": "number", "required": true, "description": "Quantity held (negative for shorts)" },
+        { "name": "marketValue", "type": "number", "required": true, "description": "Market value in base currency" },
+        { "name": "weightPercent", "type": "number", "required": false, "description": "Portfolio weight %" }
+      ]
+    },
+    {
+      "name": "Trade",
+      "description": "A trade record in SS&C Geneva",
+      "fields": [
+        { "name": "tradeId", "type": "string", "required": true, "description": "Trade identifier" },
+        { "name": "portfolioId", "type": "string", "required": true, "description": "Portfolio ID" },
+        { "name": "tradeDate", "type": "date", "required": true, "description": "Trade date" },
+        { "name": "settlementDate", "type": "date", "required": true, "description": "Settlement date" },
+        { "name": "transactionType", "type": "enum(BUY|SELL|SHORT_SELL|COVER|SUBSCRIBE|REDEEM|TRANSFER_IN|TRANSFER_OUT)", "required": true },
+        { "name": "securityId", "type": "string", "required": true, "description": "Security identifier" },
+        { "name": "quantity", "type": "number", "required": true, "description": "Trade quantity" },
+        { "name": "price", "type": "number", "required": true, "description": "Trade price" },
+        { "name": "netAmount", "type": "number", "required": false, "description": "Net settlement amount" },
+        { "name": "status", "type": "enum(PENDING|SETTLED|CANCELLED|FAILED)", "required": true }
+      ]
+    },
+    {
+      "name": "NAVReport",
+      "description": "Net Asset Value calculation report",
+      "fields": [
+        { "name": "portfolioId", "type": "string", "required": true },
+        { "name": "navDate", "type": "date", "required": true, "description": "NAV calculation date" },
+        { "name": "navType", "type": "enum(OFFICIAL|ESTIMATED|PRELIMINARY)", "required": true },
+        { "name": "totalNAV", "type": "number", "required": true, "description": "Total NAV in base currency" },
+        { "name": "navPerUnit", "type": "number", "required": true, "description": "NAV per share/unit" },
+        { "name": "unitsOutstanding", "type": "number", "required": true },
+        { "name": "baseCurrency", "type": "string", "required": true }
+      ]
+    }
+  ]
+}
