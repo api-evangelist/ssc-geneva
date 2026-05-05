@@ -1,0 +1,13 @@
+{
+  "repo": "ssc-geneva",
+  "feeds": [
+    {
+      "source": "https://www.ssctech.com/blog",
+      "feed_url": "https://www.ssctech.com/blog/rss.xml",
+      "saved": 10,
+      "title": "INSIGHTS"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:37:06Z"
+}
