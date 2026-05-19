@@ -1,0 +1,84 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SS&C Geneva Fund Accounting API — NAV
+  description: 'SS&C Geneva Fund Accounting API — NAV. 1 operations. Lead operation: Get NAV for a portfolio. Self-contained
+    Naftiko capability covering one Ssc Geneva business surface.'
+  tags:
+  - Ssc Geneva
+  - NAV
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SSC_GENEVA_API_KEY: SSC_GENEVA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: fund-accounting-nav
+    baseUri: https://api.ssctech.example.com/geneva/v1
+    description: SS&C Geneva Fund Accounting API — NAV business capability. Self-contained, no shared references.
+    resources:
+    - name: portfolios-portfolioId-nav
+      path: /portfolios/{portfolioId}/nav
+      operations:
+      - name: getportfolionav
+        method: GET
+        description: Get NAV for a portfolio
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: navDate
+          in: query
+          type: string
+          required: true
+        - name: navType
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.SSC_GENEVA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: fund-accounting-nav-rest
+    port: 8080
+    description: REST adapter for SS&C Geneva Fund Accounting API — NAV. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/portfolios/{portfolioid}/nav
+      name: portfolios-portfolioid-nav
+      description: REST surface for portfolios-portfolioId-nav.
+      operations:
+      - method: GET
+        name: getportfolionav
+        description: Get NAV for a portfolio
+        call: fund-accounting-nav.getportfolionav
+        with:
+          navDate: rest.navDate
+          navType: rest.navType
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: fund-accounting-nav-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SS&C Geneva Fund Accounting API — NAV. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-nav-portfolio
+      description: Get NAV for a portfolio
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fund-accounting-nav.getportfolionav
+      with:
+        navDate: tools.navDate
+        navType: tools.navType
+      outputParameters:
+      - type: object
+        mapping: $.
