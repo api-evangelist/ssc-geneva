@@ -1,0 +1,263 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SS&C Geneva Fund Accounting API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Portfolios",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List portfolios",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ssctech.example.com/geneva/v1/portfolios",
+            "params": [
+              {
+                "name": "fundType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "currency",
+                "value": "USD",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of portfolios (funds) accessible to the authenticated user. Supports filtering by fund type, currency, manager, and status."
+        },
+        {
+          "info": {
+            "name": "Retrieve a portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ssctech.example.com/geneva/v1/portfolios/:portfolioId",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "FUND-001",
+                "type": "path",
+                "description": "Geneva portfolio identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific portfolio including AUM and metadata."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Positions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get portfolio positions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ssctech.example.com/geneva/v1/portfolios/:portfolioId/positions",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "FUND-001",
+                "type": "path",
+                "description": "Geneva portfolio identifier"
+              },
+              {
+                "name": "asOfDate",
+                "value": "2026-03-17",
+                "type": "query",
+                "description": "Position date (ISO 8601 date)"
+              },
+              {
+                "name": "includeExpired",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "assetClass",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns current or historical positions for a portfolio as of a specified date. Includes long and short positions across equities, fixed income, derivatives, and other asset classes."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Trades",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List trades for a portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ssctech.example.com/geneva/v1/portfolios/:portfolioId/trades",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "FUND-001",
+                "type": "path",
+                "description": "Geneva portfolio identifier"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tradeStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns trade history for a portfolio within a date range."
+        },
+        {
+          "info": {
+            "name": "Submit a new trade",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ssctech.example.com/geneva/v1/portfolios/:portfolioId/trades",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "FUND-001",
+                "type": "path",
+                "description": "Geneva portfolio identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new trade record in Geneva for processing and settlement. Supports equity, fixed income, FX, and derivative transactions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "NAV",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get NAV for a portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ssctech.example.com/geneva/v1/portfolios/:portfolioId/nav",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "FUND-001",
+                "type": "path",
+                "description": "Geneva portfolio identifier"
+              },
+              {
+                "name": "navDate",
+                "value": "2026-03-17",
+                "type": "query"
+              },
+              {
+                "name": "navType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the Net Asset Value (NAV) calculation for a portfolio on a specified date, including per-share/unit NAV, total NAV, and component breakdown."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Investors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List investors in a portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ssctech.example.com/geneva/v1/portfolios/:portfolioId/investors",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "FUND-001",
+                "type": "path",
+                "description": "Geneva portfolio identifier"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns investor accounts with capital allocations for a fund."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
