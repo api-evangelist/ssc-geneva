@@ -2,11 +2,11 @@
   "repo": "ssc-geneva",
   "feeds": [
     {
-      "source": "https://www.ssctech.com/blog",
+      "source": "https://www.ssctech.com/blog/rss.xml",
       "feed_url": "https://www.ssctech.com/blog/rss.xml",
       "title": "",
-      "saved": 2,
-      "method": "discovered"
+      "saved": 3,
+      "method": "feed"
     },
     {
       "source": "https://www.ssctech.com/products",
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 31,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 38,
+  "fetched": "2026-06-27T12:03:07Z"
 }
