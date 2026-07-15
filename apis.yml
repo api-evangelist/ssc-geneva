@@ -48,6 +48,8 @@ apis:
       - FN: SS&C Technologies Support
         url: https://www.ssctech.com/about/support-client-portals
 common:
+  - type: AgenticAccess
+    url: agentic-access/ssc-geneva-agentic-access.yml
   - type: DomainSecurity
     url: security/ssc-geneva-domain-security.yml
   - type: Authentication
