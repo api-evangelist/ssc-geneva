@@ -1,0 +1,120 @@
+openapi: 3.1.0
+info:
+  title: SS&C Geneva Fund Accounting Investors NAV API
+  description: SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems.
+  version: '1.0'
+  contact:
+    name: SS&C Technologies Support
+    url: https://www.ssctech.com/about/support-client-portals
+  license:
+    name: SS&C Geneva License Agreement
+    url: https://www.ssctech.com/about/privacy
+servers:
+- url: https://api.ssctech.example.com/geneva/v1
+  description: SS&C Geneva API (tenant-specific URL)
+security:
+- BearerAuth: []
+- BasicAuth: []
+tags:
+- name: NAV
+  description: Net Asset Value calculation and reporting
+paths:
+  /portfolios/{portfolioId}/nav:
+    get:
+      operationId: getPortfolioNAV
+      summary: Get NAV for a portfolio
+      description: Returns the Net Asset Value (NAV) calculation for a portfolio on a specified date, including per-share/unit NAV, total NAV, and component breakdown.
+      tags:
+      - NAV
+      parameters:
+      - $ref: '#/components/parameters/PortfolioId'
+      - name: navDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2026-03-17'
+      - name: navType
+        in: query
+        schema:
+          type: string
+          enum:
+          - OFFICIAL
+          - ESTIMATED
+          - PRELIMINARY
+          default: OFFICIAL
+      responses:
+        '200':
+          description: NAV calculation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NAVReport'
+        '404':
+          description: NAV not calculated for specified date
+components:
+  parameters:
+    PortfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Geneva portfolio identifier
+      schema:
+        type: string
+      example: FUND-001
+  schemas:
+    NAVReport:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        navDate:
+          type: string
+          format: date
+        navType:
+          type: string
+          enum:
+          - OFFICIAL
+          - ESTIMATED
+          - PRELIMINARY
+        totalNAV:
+          type: number
+          description: Total NAV in base currency
+        navPerUnit:
+          type: number
+          description: NAV per share/unit
+        unitsOutstanding:
+          type: number
+        baseCurrency:
+          type: string
+        components:
+          type: object
+          properties:
+            longPositions:
+              type: number
+            shortPositions:
+              type: number
+            cashAndEquivalents:
+              type: number
+            accruedIncome:
+              type: number
+            liabilities:
+              type: number
+        performanceReturn:
+          type: object
+          properties:
+            mtdReturn:
+              type: number
+            ytdReturn:
+              type: number
+            sinceInceptionReturn:
+              type: number
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    BasicAuth:
+      type: http
+      scheme: basic

@@ -1,0 +1,141 @@
+openapi: 3.1.0
+info:
+  title: SS&C Geneva Fund Accounting Investors Positions API
+  description: SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems.
+  version: '1.0'
+  contact:
+    name: SS&C Technologies Support
+    url: https://www.ssctech.com/about/support-client-portals
+  license:
+    name: SS&C Geneva License Agreement
+    url: https://www.ssctech.com/about/privacy
+servers:
+- url: https://api.ssctech.example.com/geneva/v1
+  description: SS&C Geneva API (tenant-specific URL)
+security:
+- BearerAuth: []
+- BasicAuth: []
+tags:
+- name: Positions
+  description: Portfolio positions and holdings
+paths:
+  /portfolios/{portfolioId}/positions:
+    get:
+      operationId: getPortfolioPositions
+      summary: Get portfolio positions
+      description: Returns current or historical positions for a portfolio as of a specified date. Includes long and short positions across equities, fixed income, derivatives, and other asset classes.
+      tags:
+      - Positions
+      parameters:
+      - $ref: '#/components/parameters/PortfolioId'
+      - name: asOfDate
+        in: query
+        required: true
+        description: Position date (ISO 8601 date)
+        schema:
+          type: string
+          format: date
+        example: '2026-03-17'
+      - name: includeExpired
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: assetClass
+        in: query
+        schema:
+          type: string
+          enum:
+          - EQUITY
+          - FIXED_INCOME
+          - DERIVATIVE
+          - CURRENCY
+          - COMMODITY
+          - REAL_ESTATE
+          - PRIVATE_EQUITY
+      responses:
+        '200':
+          description: Portfolio positions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PositionListResponse'
+components:
+  schemas:
+    PositionListResponse:
+      type: object
+      properties:
+        positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Position'
+        asOfDate:
+          type: string
+          format: date
+        totalMarketValue:
+          type: number
+        baseCurrency:
+          type: string
+        totalPositions:
+          type: integer
+    Position:
+      type: object
+      properties:
+        positionId:
+          type: string
+        portfolioId:
+          type: string
+        securityId:
+          type: string
+        isin:
+          type: string
+        ticker:
+          type: string
+        securityName:
+          type: string
+        assetClass:
+          type: string
+        asOfDate:
+          type: string
+          format: date
+        quantity:
+          type: number
+          description: Quantity held (negative for short positions)
+        marketValue:
+          type: number
+          description: Market value in portfolio base currency
+        costBasis:
+          type: number
+        unrealizedGainLoss:
+          type: number
+        currency:
+          type: string
+        fxRate:
+          type: number
+          description: FX rate to base currency
+        pricePerUnit:
+          type: number
+        country:
+          type: string
+        sector:
+          type: string
+        weightPercent:
+          type: number
+          description: Portfolio weight percentage
+  parameters:
+    PortfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Geneva portfolio identifier
+      schema:
+        type: string
+      example: FUND-001
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    BasicAuth:
+      type: http
+      scheme: basic

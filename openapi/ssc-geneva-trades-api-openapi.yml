@@ -1,0 +1,231 @@
+openapi: 3.1.0
+info:
+  title: SS&C Geneva Fund Accounting Investors Trades API
+  description: SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems.
+  version: '1.0'
+  contact:
+    name: SS&C Technologies Support
+    url: https://www.ssctech.com/about/support-client-portals
+  license:
+    name: SS&C Geneva License Agreement
+    url: https://www.ssctech.com/about/privacy
+servers:
+- url: https://api.ssctech.example.com/geneva/v1
+  description: SS&C Geneva API (tenant-specific URL)
+security:
+- BearerAuth: []
+- BasicAuth: []
+tags:
+- name: Trades
+  description: Trade capture and processing
+paths:
+  /portfolios/{portfolioId}/trades:
+    get:
+      operationId: listTrades
+      summary: List trades for a portfolio
+      description: Returns trade history for a portfolio within a date range.
+      tags:
+      - Trades
+      parameters:
+      - $ref: '#/components/parameters/PortfolioId'
+      - name: startDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: tradeStatus
+        in: query
+        schema:
+          type: string
+          enum:
+          - PENDING
+          - SETTLED
+          - CANCELLED
+          - FAILED
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Trade list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradeListResponse'
+    post:
+      operationId: createTrade
+      summary: Submit a new trade
+      description: Creates a new trade record in Geneva for processing and settlement. Supports equity, fixed income, FX, and derivative transactions.
+      tags:
+      - Trades
+      parameters:
+      - $ref: '#/components/parameters/PortfolioId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TradeCreate'
+      responses:
+        '201':
+          description: Trade created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trade'
+        '400':
+          description: Invalid trade data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    TradeCreate:
+      type: object
+      required:
+      - tradeDate
+      - settlementDate
+      - transactionType
+      - securityId
+      - quantity
+      - price
+      - currency
+      properties:
+        tradeDate:
+          type: string
+          format: date
+        settlementDate:
+          type: string
+          format: date
+        transactionType:
+          type: string
+          enum:
+          - BUY
+          - SELL
+          - SHORT_SELL
+          - COVER
+          - SUBSCRIBE
+          - REDEEM
+        securityId:
+          type: string
+        quantity:
+          type: number
+        price:
+          type: number
+        currency:
+          type: string
+        commission:
+          type: number
+          default: 0
+        broker:
+          type: string
+        counterparty:
+          type: string
+        externalTradeId:
+          type: string
+          description: OMS/external system trade reference
+    Trade:
+      type: object
+      properties:
+        tradeId:
+          type: string
+        portfolioId:
+          type: string
+        tradeDate:
+          type: string
+          format: date
+        settlementDate:
+          type: string
+          format: date
+        transactionType:
+          type: string
+          enum:
+          - BUY
+          - SELL
+          - SHORT_SELL
+          - COVER
+          - SUBSCRIBE
+          - REDEEM
+          - TRANSFER_IN
+          - TRANSFER_OUT
+        securityId:
+          type: string
+        isin:
+          type: string
+        securityName:
+          type: string
+        quantity:
+          type: number
+        price:
+          type: number
+        currency:
+          type: string
+        grossAmount:
+          type: number
+        commission:
+          type: number
+        netAmount:
+          type: number
+        status:
+          type: string
+          enum:
+          - PENDING
+          - SETTLED
+          - CANCELLED
+          - FAILED
+        broker:
+          type: string
+        counterparty:
+          type: string
+        accrued:
+          type: number
+          description: Accrued interest for fixed income trades
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
+    TradeListResponse:
+      type: object
+      properties:
+        trades:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trade'
+        totalCount:
+          type: integer
+        page:
+          type: integer
+  parameters:
+    PortfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Geneva portfolio identifier
+      schema:
+        type: string
+      example: FUND-001
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    BasicAuth:
+      type: http
+      scheme: basic

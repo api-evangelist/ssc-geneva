@@ -1,0 +1,170 @@
+openapi: 3.1.0
+info:
+  title: SS&C Geneva Fund Accounting Investors Portfolios API
+  description: SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems.
+  version: '1.0'
+  contact:
+    name: SS&C Technologies Support
+    url: https://www.ssctech.com/about/support-client-portals
+  license:
+    name: SS&C Geneva License Agreement
+    url: https://www.ssctech.com/about/privacy
+servers:
+- url: https://api.ssctech.example.com/geneva/v1
+  description: SS&C Geneva API (tenant-specific URL)
+security:
+- BearerAuth: []
+- BasicAuth: []
+tags:
+- name: Portfolios
+  description: Portfolio and fund management
+paths:
+  /portfolios:
+    get:
+      operationId: listPortfolios
+      summary: List portfolios
+      description: Returns a list of portfolios (funds) accessible to the authenticated user. Supports filtering by fund type, currency, manager, and status.
+      tags:
+      - Portfolios
+      parameters:
+      - name: fundType
+        in: query
+        schema:
+          type: string
+          enum:
+          - HEDGE_FUND
+          - MUTUAL_FUND
+          - PE_FUND
+          - SEPARATE_ACCOUNT
+          - FUND_OF_FUNDS
+      - name: currency
+        in: query
+        schema:
+          type: string
+          description: Base currency ISO code
+        example: USD
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - CLOSED
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: size
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of portfolios
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortfolioListResponse'
+        '401':
+          description: Unauthorized
+  /portfolios/{portfolioId}:
+    get:
+      operationId: getPortfolio
+      summary: Retrieve a portfolio
+      description: Returns detailed information for a specific portfolio including AUM and metadata.
+      tags:
+      - Portfolios
+      parameters:
+      - $ref: '#/components/parameters/PortfolioId'
+      responses:
+        '200':
+          description: Portfolio details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+        '404':
+          description: Portfolio not found
+components:
+  parameters:
+    PortfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Geneva portfolio identifier
+      schema:
+        type: string
+      example: FUND-001
+  schemas:
+    PortfolioListResponse:
+      type: object
+      properties:
+        portfolios:
+          type: array
+          items:
+            $ref: '#/components/schemas/Portfolio'
+        totalCount:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+    Portfolio:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+          description: Unique portfolio identifier in Geneva
+        name:
+          type: string
+        shortName:
+          type: string
+        fundType:
+          type: string
+          enum:
+          - HEDGE_FUND
+          - MUTUAL_FUND
+          - PE_FUND
+          - SEPARATE_ACCOUNT
+          - FUND_OF_FUNDS
+        baseCurrency:
+          type: string
+          pattern: ^[A-Z]{3}$
+        inceptionDate:
+          type: string
+          format: date
+        closingDate:
+          type: string
+          format: date
+          nullable: true
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - CLOSED
+        investmentManager:
+          type: string
+        administrator:
+          type: string
+        custodian:
+          type: string
+        aum:
+          type: number
+          description: Assets Under Management in base currency
+        aumDate:
+          type: string
+          format: date
+        benchmarkIndex:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    BasicAuth:
+      type: http
+      scheme: basic
