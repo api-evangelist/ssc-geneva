@@ -1,0 +1,347 @@
+{
+  "info": {
+    "_postman_id": "54178e5d-3d0a-4f62-b5b8-1d02653d898e",
+    "name": "SS&C Geneva Fund Accounting Investors Portfolios API",
+    "description": "SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems.\n\nContact Support:\n Name: SS&C Technologies Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:41.000Z",
+    "updatedAt": "2026-07-28T03:01:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-54178e5d-3d0a-4f62-b5b8-1d02653d898e"
+  },
+  "item": [
+    {
+      "name": "portfolios",
+      "item": [
+        {
+          "name": "{portfolioId}",
+          "item": [
+            {
+              "name": "Retrieve a portfolio",
+              "id": "e51954a0-ba1b-4b5a-a39b-b47374be5d7f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/portfolios/:portfolioId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "portfolios",
+                    ":portfolioId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0f0ac8b0-1f0e-4492-bc56-36599b6fa5dc",
+                      "key": "portfolioId",
+                      "value": "<string>",
+                      "description": "(Required) Geneva portfolio identifier"
+                    }
+                  ]
+                },
+                "description": "Returns detailed information for a specific portfolio including AUM and metadata."
+              },
+              "response": [
+                {
+                  "id": "09a69f17-f45a-4cb3-bdae-2d2863e72163",
+                  "name": "Portfolio details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "portfolioId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"portfolioId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"shortName\": \"<string>\",\n  \"fundType\": \"HEDGE_FUND\",\n  \"baseCurrency\": \"UYQ\",\n  \"inceptionDate\": \"<date>\",\n  \"closingDate\": \"<date>\",\n  \"status\": \"INACTIVE\",\n  \"investmentManager\": \"<string>\",\n  \"administrator\": \"<string>\",\n  \"custodian\": \"<string>\",\n  \"aum\": \"<number>\",\n  \"aumDate\": \"<date>\",\n  \"benchmarkIndex\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:01:42.000Z",
+                  "updatedAt": "2026-07-28T03:01:42.000Z",
+                  "uid": "35240-09a69f17-f45a-4cb3-bdae-2d2863e72163"
+                },
+                {
+                  "id": "1000e15e-29f2-473c-bd6e-69253345ddf3",
+                  "name": "Portfolio not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "portfolioId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:01:42.000Z",
+                  "updatedAt": "2026-07-28T03:01:42.000Z",
+                  "uid": "35240-1000e15e-29f2-473c-bd6e-69253345ddf3"
+                }
+              ],
+              "createdAt": "2026-07-28T03:01:42.000Z",
+              "updatedAt": "2026-07-28T03:01:42.000Z",
+              "uid": "35240-e51954a0-ba1b-4b5a-a39b-b47374be5d7f"
+            }
+          ],
+          "id": "572ccc08-08ea-4cd5-84d3-a2446cd00b3f",
+          "createdAt": "2026-07-28T03:01:42.000Z",
+          "updatedAt": "2026-07-28T03:01:42.000Z",
+          "uid": "35240-572ccc08-08ea-4cd5-84d3-a2446cd00b3f"
+        },
+        {
+          "name": "List portfolios",
+          "id": "4ed7a135-fcce-4134-9a62-2838e213e764",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/portfolios?fundType=MUTUAL_FUND&currency=<string>&status=CLOSED&page=0&size=50",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "portfolios"
+              ],
+              "query": [
+                {
+                  "key": "fundType",
+                  "value": "MUTUAL_FUND"
+                },
+                {
+                  "key": "currency",
+                  "value": "<string>"
+                },
+                {
+                  "key": "status",
+                  "value": "CLOSED"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "50"
+                }
+              ]
+            },
+            "description": "Returns a list of portfolios (funds) accessible to the authenticated user. Supports filtering by fund type, currency, manager, and status."
+          },
+          "response": [
+            {
+              "id": "99ef1f1a-0ade-4bfe-9286-8415884272b3",
+              "name": "List of portfolios",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/portfolios?fundType=MUTUAL_FUND&currency=<string>&status=CLOSED&page=0&size=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "portfolios"
+                  ],
+                  "query": [
+                    {
+                      "key": "fundType",
+                      "value": "MUTUAL_FUND"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "CLOSED"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"portfolios\": [\n    {\n      \"portfolioId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"shortName\": \"<string>\",\n      \"fundType\": \"PE_FUND\",\n      \"baseCurrency\": \"VKX\",\n      \"inceptionDate\": \"<date>\",\n      \"closingDate\": \"<date>\",\n      \"status\": \"CLOSED\",\n      \"investmentManager\": \"<string>\",\n      \"administrator\": \"<string>\",\n      \"custodian\": \"<string>\",\n      \"aum\": \"<number>\",\n      \"aumDate\": \"<date>\",\n      \"benchmarkIndex\": \"<string>\"\n    },\n    {\n      \"portfolioId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"shortName\": \"<string>\",\n      \"fundType\": \"PE_FUND\",\n      \"baseCurrency\": \"ZUH\",\n      \"inceptionDate\": \"<date>\",\n      \"closingDate\": \"<date>\",\n      \"status\": \"INACTIVE\",\n      \"investmentManager\": \"<string>\",\n      \"administrator\": \"<string>\",\n      \"custodian\": \"<string>\",\n      \"aum\": \"<number>\",\n      \"aumDate\": \"<date>\",\n      \"benchmarkIndex\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pageSize\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:01:42.000Z",
+              "updatedAt": "2026-07-28T03:01:42.000Z",
+              "uid": "35240-99ef1f1a-0ade-4bfe-9286-8415884272b3"
+            },
+            {
+              "id": "7c3bdb3f-1c20-4378-91b4-8339ed89f6cd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/portfolios?fundType=MUTUAL_FUND&currency=<string>&status=CLOSED&page=0&size=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "portfolios"
+                  ],
+                  "query": [
+                    {
+                      "key": "fundType",
+                      "value": "MUTUAL_FUND"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "CLOSED"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:01:42.000Z",
+              "updatedAt": "2026-07-28T03:01:42.000Z",
+              "uid": "35240-7c3bdb3f-1c20-4378-91b4-8339ed89f6cd"
+            }
+          ],
+          "createdAt": "2026-07-28T03:01:42.000Z",
+          "updatedAt": "2026-07-28T03:01:42.000Z",
+          "uid": "35240-4ed7a135-fcce-4134-9a62-2838e213e764"
+        }
+      ],
+      "id": "acba467c-34ca-4a9f-9b15-9f923b863919",
+      "createdAt": "2026-07-28T03:01:42.000Z",
+      "updatedAt": "2026-07-28T03:01:42.000Z",
+      "uid": "35240-acba467c-34ca-4a9f-9b15-9f923b863919"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ssctech.example.com/geneva/v1"
+    }
+  ]
+}

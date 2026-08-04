@@ -1,0 +1,22 @@
+{
+  "provider": "ssc-geneva",
+  "sources": [
+    "ssc-geneva-investors-api-openapi.yml",
+    "ssc-geneva-nav-api-openapi.yml",
+    "ssc-geneva-portfolios-api-openapi.yml",
+    "ssc-geneva-positions-api-openapi.yml",
+    "ssc-geneva-trades-api-openapi.yml"
+  ],
+  "outputs": [
+    "ssc-geneva-investors-api-openapi.yml",
+    "ssc-geneva-nav-api-openapi.yml",
+    "ssc-geneva-portfolios-api-openapi.yml",
+    "ssc-geneva-positions-api-openapi.yml",
+    "ssc-geneva-trades-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

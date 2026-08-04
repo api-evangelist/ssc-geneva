@@ -1,0 +1,159 @@
+{
+  "info": {
+    "_postman_id": "b572f9f1-0790-4204-ba2e-30a47939cd1b",
+    "name": "SS&C Geneva Fund Accounting Investors API",
+    "description": "SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems.\n\nContact Support:\n Name: SS&C Technologies Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:39.000Z",
+    "updatedAt": "2026-07-28T03:01:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b572f9f1-0790-4204-ba2e-30a47939cd1b"
+  },
+  "item": [
+    {
+      "name": "portfolios",
+      "item": [
+        {
+          "name": "{portfolioId}",
+          "item": [
+            {
+              "name": "investors",
+              "item": [
+                {
+                  "name": "List investors in a portfolio",
+                  "id": "7ebeb762-1a05-4d99-8e4d-93b49ece5bed",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId/investors?status=ACTIVE",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId",
+                        "investors"
+                      ],
+                      "query": [
+                        {
+                          "key": "status",
+                          "value": "ACTIVE"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "21c8d78f-a693-4591-be12-d9d6e98ec477",
+                          "key": "portfolioId",
+                          "value": "<string>",
+                          "description": "(Required) Geneva portfolio identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns investor accounts with capital allocations for a fund."
+                  },
+                  "response": [
+                    {
+                      "id": "6c8741c9-beaf-478d-8ed9-d59b8e1b93d1",
+                      "name": "Investor list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/portfolios/:portfolioId/investors?status=ACTIVE",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "portfolios",
+                            ":portfolioId",
+                            "investors"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "ACTIVE"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "portfolioId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"investors\": [\n    {\n      \"investorId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"entityType\": \"INSTITUTION\",\n      \"capitalBalance\": \"<number>\",\n      \"unitsHeld\": \"<number>\",\n      \"percentageOwnership\": \"<number>\",\n      \"inceptionDate\": \"<date>\",\n      \"status\": \"REDEEMED\",\n      \"jurisdiction\": \"<string>\"\n    },\n    {\n      \"investorId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"entityType\": \"FUND_OF_FUNDS\",\n      \"capitalBalance\": \"<number>\",\n      \"unitsHeld\": \"<number>\",\n      \"percentageOwnership\": \"<number>\",\n      \"inceptionDate\": \"<date>\",\n      \"status\": \"PENDING\",\n      \"jurisdiction\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:01:40.000Z",
+                      "updatedAt": "2026-07-28T03:01:40.000Z",
+                      "uid": "35240-6c8741c9-beaf-478d-8ed9-d59b8e1b93d1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:01:40.000Z",
+                  "updatedAt": "2026-07-28T03:01:40.000Z",
+                  "uid": "35240-7ebeb762-1a05-4d99-8e4d-93b49ece5bed"
+                }
+              ],
+              "id": "a78beec9-6e8c-4205-9d47-389643181b9f",
+              "createdAt": "2026-07-28T03:01:40.000Z",
+              "updatedAt": "2026-07-28T03:01:40.000Z",
+              "uid": "35240-a78beec9-6e8c-4205-9d47-389643181b9f"
+            }
+          ],
+          "id": "2525d0d2-0a19-4769-898f-ecdcad36ee95",
+          "createdAt": "2026-07-28T03:01:40.000Z",
+          "updatedAt": "2026-07-28T03:01:40.000Z",
+          "uid": "35240-2525d0d2-0a19-4769-898f-ecdcad36ee95"
+        }
+      ],
+      "id": "d899bb87-0168-4dea-a7ed-cb086f340744",
+      "createdAt": "2026-07-28T03:01:40.000Z",
+      "updatedAt": "2026-07-28T03:01:40.000Z",
+      "uid": "35240-d899bb87-0168-4dea-a7ed-cb086f340744"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ssctech.example.com/geneva/v1"
+    }
+  ]
+}

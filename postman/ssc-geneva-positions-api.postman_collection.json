@@ -1,0 +1,177 @@
+{
+  "info": {
+    "_postman_id": "5967ee72-4edd-4902-8314-e4ee45730e04",
+    "name": "SS&C Geneva Fund Accounting Investors Positions API",
+    "description": "SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems.\n\nContact Support:\n Name: SS&C Technologies Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:42.000Z",
+    "updatedAt": "2026-07-28T03:01:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5967ee72-4edd-4902-8314-e4ee45730e04"
+  },
+  "item": [
+    {
+      "name": "portfolios",
+      "item": [
+        {
+          "name": "{portfolioId}",
+          "item": [
+            {
+              "name": "positions",
+              "item": [
+                {
+                  "name": "Get portfolio positions",
+                  "id": "a4ee837a-80b8-4e49-8fab-5fb05f582320",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId/positions?asOfDate=<date>&includeExpired=false&assetClass=REAL_ESTATE",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId",
+                        "positions"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Position date (ISO 8601 date)",
+                          "key": "asOfDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "includeExpired",
+                          "value": "false"
+                        },
+                        {
+                          "key": "assetClass",
+                          "value": "REAL_ESTATE"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "ca3a65fd-1777-4c15-9138-9047caf6ebc3",
+                          "key": "portfolioId",
+                          "value": "<string>",
+                          "description": "(Required) Geneva portfolio identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns current or historical positions for a portfolio as of a specified date. Includes long and short positions across equities, fixed income, derivatives, and other asset classes."
+                  },
+                  "response": [
+                    {
+                      "id": "217033ce-a757-4c5f-95a2-e4ce59d5ab9d",
+                      "name": "Portfolio positions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/portfolios/:portfolioId/positions?asOfDate=<date>&includeExpired=false&assetClass=REAL_ESTATE",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "portfolios",
+                            ":portfolioId",
+                            "positions"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Position date (ISO 8601 date)",
+                              "key": "asOfDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "includeExpired",
+                              "value": "false"
+                            },
+                            {
+                              "key": "assetClass",
+                              "value": "REAL_ESTATE"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "portfolioId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"positions\": [\n    {\n      \"positionId\": \"<string>\",\n      \"portfolioId\": \"<string>\",\n      \"securityId\": \"<string>\",\n      \"isin\": \"<string>\",\n      \"ticker\": \"<string>\",\n      \"securityName\": \"<string>\",\n      \"assetClass\": \"<string>\",\n      \"asOfDate\": \"<date>\",\n      \"quantity\": \"<number>\",\n      \"marketValue\": \"<number>\",\n      \"costBasis\": \"<number>\",\n      \"unrealizedGainLoss\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"fxRate\": \"<number>\",\n      \"pricePerUnit\": \"<number>\",\n      \"country\": \"<string>\",\n      \"sector\": \"<string>\",\n      \"weightPercent\": \"<number>\"\n    },\n    {\n      \"positionId\": \"<string>\",\n      \"portfolioId\": \"<string>\",\n      \"securityId\": \"<string>\",\n      \"isin\": \"<string>\",\n      \"ticker\": \"<string>\",\n      \"securityName\": \"<string>\",\n      \"assetClass\": \"<string>\",\n      \"asOfDate\": \"<date>\",\n      \"quantity\": \"<number>\",\n      \"marketValue\": \"<number>\",\n      \"costBasis\": \"<number>\",\n      \"unrealizedGainLoss\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"fxRate\": \"<number>\",\n      \"pricePerUnit\": \"<number>\",\n      \"country\": \"<string>\",\n      \"sector\": \"<string>\",\n      \"weightPercent\": \"<number>\"\n    }\n  ],\n  \"asOfDate\": \"<date>\",\n  \"totalMarketValue\": \"<number>\",\n  \"baseCurrency\": \"<string>\",\n  \"totalPositions\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:01:43.000Z",
+                      "updatedAt": "2026-07-28T03:01:43.000Z",
+                      "uid": "35240-217033ce-a757-4c5f-95a2-e4ce59d5ab9d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:01:43.000Z",
+                  "updatedAt": "2026-07-28T03:01:43.000Z",
+                  "uid": "35240-a4ee837a-80b8-4e49-8fab-5fb05f582320"
+                }
+              ],
+              "id": "63ab8c93-c64f-48ab-8c07-04358a547434",
+              "createdAt": "2026-07-28T03:01:43.000Z",
+              "updatedAt": "2026-07-28T03:01:43.000Z",
+              "uid": "35240-63ab8c93-c64f-48ab-8c07-04358a547434"
+            }
+          ],
+          "id": "db8df674-3045-4cf9-ae56-d0ad565b6089",
+          "createdAt": "2026-07-28T03:01:43.000Z",
+          "updatedAt": "2026-07-28T03:01:43.000Z",
+          "uid": "35240-db8df674-3045-4cf9-ae56-d0ad565b6089"
+        }
+      ],
+      "id": "0753fde3-607c-4640-a23d-0fb6283330ed",
+      "createdAt": "2026-07-28T03:01:43.000Z",
+      "updatedAt": "2026-07-28T03:01:43.000Z",
+      "uid": "35240-0753fde3-607c-4640-a23d-0fb6283330ed"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ssctech.example.com/geneva/v1"
+    }
+  ]
+}

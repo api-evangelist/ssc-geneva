@@ -1,0 +1,368 @@
+{
+  "info": {
+    "_postman_id": "33abb8cc-4548-4f00-a034-9525ca25323e",
+    "name": "SS&C Geneva Fund Accounting Investors Trades API",
+    "description": "SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems.\n\nContact Support:\n Name: SS&C Technologies Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:43.000Z",
+    "updatedAt": "2026-07-28T03:01:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-33abb8cc-4548-4f00-a034-9525ca25323e"
+  },
+  "item": [
+    {
+      "name": "portfolios",
+      "item": [
+        {
+          "name": "{portfolioId}",
+          "item": [
+            {
+              "name": "trades",
+              "item": [
+                {
+                  "name": "List trades for a portfolio",
+                  "id": "cd871dfd-33d3-43c3-acda-e157c1a47e91",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId/trades?startDate=<date>&endDate=<date>&tradeStatus=PENDING&page=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId",
+                        "trades"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "startDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "endDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "tradeStatus",
+                          "value": "PENDING"
+                        },
+                        {
+                          "key": "page",
+                          "value": "0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "0e9021dc-e087-4bbd-ad9b-4a65e818b9a2",
+                          "key": "portfolioId",
+                          "value": "<string>",
+                          "description": "(Required) Geneva portfolio identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns trade history for a portfolio within a date range."
+                  },
+                  "response": [
+                    {
+                      "id": "7908f7bb-5ba1-44fe-aca5-abfe12245978",
+                      "name": "Trade list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/portfolios/:portfolioId/trades?startDate=<date>&endDate=<date>&tradeStatus=PENDING&page=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "portfolios",
+                            ":portfolioId",
+                            "trades"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "endDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "tradeStatus",
+                              "value": "PENDING"
+                            },
+                            {
+                              "key": "page",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "portfolioId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"trades\": [\n    {\n      \"tradeId\": \"<string>\",\n      \"portfolioId\": \"<string>\",\n      \"tradeDate\": \"<date>\",\n      \"settlementDate\": \"<date>\",\n      \"transactionType\": \"BUY\",\n      \"securityId\": \"<string>\",\n      \"isin\": \"<string>\",\n      \"securityName\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"grossAmount\": \"<number>\",\n      \"commission\": \"<number>\",\n      \"netAmount\": \"<number>\",\n      \"status\": \"SETTLED\",\n      \"broker\": \"<string>\",\n      \"counterparty\": \"<string>\",\n      \"accrued\": \"<number>\"\n    },\n    {\n      \"tradeId\": \"<string>\",\n      \"portfolioId\": \"<string>\",\n      \"tradeDate\": \"<date>\",\n      \"settlementDate\": \"<date>\",\n      \"transactionType\": \"BUY\",\n      \"securityId\": \"<string>\",\n      \"isin\": \"<string>\",\n      \"securityName\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"grossAmount\": \"<number>\",\n      \"commission\": \"<number>\",\n      \"netAmount\": \"<number>\",\n      \"status\": \"PENDING\",\n      \"broker\": \"<string>\",\n      \"counterparty\": \"<string>\",\n      \"accrued\": \"<number>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\",\n  \"page\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:01:44.000Z",
+                      "updatedAt": "2026-07-28T03:01:44.000Z",
+                      "uid": "35240-7908f7bb-5ba1-44fe-aca5-abfe12245978"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:01:44.000Z",
+                  "updatedAt": "2026-07-28T03:01:44.000Z",
+                  "uid": "35240-cd871dfd-33d3-43c3-acda-e157c1a47e91"
+                },
+                {
+                  "name": "Submit a new trade",
+                  "id": "c0701476-7622-4aec-9070-8f9498f77029",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tradeDate\": \"<date>\",\n  \"settlementDate\": \"<date>\",\n  \"transactionType\": \"SUBSCRIBE\",\n  \"securityId\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"commission\": 0,\n  \"broker\": \"<string>\",\n  \"counterparty\": \"<string>\",\n  \"externalTradeId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId/trades",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId",
+                        "trades"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3165b1b1-db09-43dd-9b14-7c25b7d69652",
+                          "key": "portfolioId",
+                          "value": "<string>",
+                          "description": "(Required) Geneva portfolio identifier"
+                        }
+                      ]
+                    },
+                    "description": "Creates a new trade record in Geneva for processing and settlement. Supports equity, fixed income, FX, and derivative transactions."
+                  },
+                  "response": [
+                    {
+                      "id": "2f44e947-9d53-47c8-8e7c-67c84885db55",
+                      "name": "Trade created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tradeDate\": \"<date>\",\n  \"settlementDate\": \"<date>\",\n  \"transactionType\": \"SUBSCRIBE\",\n  \"securityId\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"commission\": 0,\n  \"broker\": \"<string>\",\n  \"counterparty\": \"<string>\",\n  \"externalTradeId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/portfolios/:portfolioId/trades",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "portfolios",
+                            ":portfolioId",
+                            "trades"
+                          ],
+                          "variable": [
+                            {
+                              "key": "portfolioId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"tradeId\": \"<string>\",\n  \"portfolioId\": \"<string>\",\n  \"tradeDate\": \"<date>\",\n  \"settlementDate\": \"<date>\",\n  \"transactionType\": \"REDEEM\",\n  \"securityId\": \"<string>\",\n  \"isin\": \"<string>\",\n  \"securityName\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"grossAmount\": \"<number>\",\n  \"commission\": \"<number>\",\n  \"netAmount\": \"<number>\",\n  \"status\": \"SETTLED\",\n  \"broker\": \"<string>\",\n  \"counterparty\": \"<string>\",\n  \"accrued\": \"<number>\"\n}",
+                      "createdAt": "2026-07-28T03:01:44.000Z",
+                      "updatedAt": "2026-07-28T03:01:44.000Z",
+                      "uid": "35240-2f44e947-9d53-47c8-8e7c-67c84885db55"
+                    },
+                    {
+                      "id": "16e56f2d-022e-4934-8bb8-c7721332c1d5",
+                      "name": "Invalid trade data",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tradeDate\": \"<date>\",\n  \"settlementDate\": \"<date>\",\n  \"transactionType\": \"SUBSCRIBE\",\n  \"securityId\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"price\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"commission\": 0,\n  \"broker\": \"<string>\",\n  \"counterparty\": \"<string>\",\n  \"externalTradeId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/portfolios/:portfolioId/trades",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "portfolios",
+                            ":portfolioId",
+                            "trades"
+                          ],
+                          "variable": [
+                            {
+                              "key": "portfolioId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T03:01:44.000Z",
+                      "updatedAt": "2026-07-28T03:01:44.000Z",
+                      "uid": "35240-16e56f2d-022e-4934-8bb8-c7721332c1d5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:01:44.000Z",
+                  "updatedAt": "2026-07-28T03:01:44.000Z",
+                  "uid": "35240-c0701476-7622-4aec-9070-8f9498f77029"
+                }
+              ],
+              "id": "8c6a64fc-3784-4436-9bb8-6c60462ad936",
+              "createdAt": "2026-07-28T03:01:44.000Z",
+              "updatedAt": "2026-07-28T03:01:44.000Z",
+              "uid": "35240-8c6a64fc-3784-4436-9bb8-6c60462ad936"
+            }
+          ],
+          "id": "dbb697ce-b864-4351-8bd4-cee7ac8b694a",
+          "createdAt": "2026-07-28T03:01:44.000Z",
+          "updatedAt": "2026-07-28T03:01:44.000Z",
+          "uid": "35240-dbb697ce-b864-4351-8bd4-cee7ac8b694a"
+        }
+      ],
+      "id": "a1840990-d0ee-4236-b1ab-5ec60389d01e",
+      "createdAt": "2026-07-28T03:01:44.000Z",
+      "updatedAt": "2026-07-28T03:01:44.000Z",
+      "uid": "35240-a1840990-d0ee-4236-b1ab-5ec60389d01e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ssctech.example.com/geneva/v1"
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "info": {
+    "_postman_id": "2b1e9d70-2940-42f4-875d-9416c919dc50",
+    "name": "SS&C Geneva Fund Accounting Investors NAV API",
+    "description": "SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems.\n\nContact Support:\n Name: SS&C Technologies Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:01:41.000Z",
+    "updatedAt": "2026-07-28T03:01:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2b1e9d70-2940-42f4-875d-9416c919dc50"
+  },
+  "item": [
+    {
+      "name": "portfolios",
+      "item": [
+        {
+          "name": "{portfolioId}",
+          "item": [
+            {
+              "name": "nav",
+              "item": [
+                {
+                  "name": "Get NAV for a portfolio",
+                  "id": "b6ef7f74-d23b-4a8f-8ce8-d3d3d3d8d4ec",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/portfolios/:portfolioId/nav?navDate=<date>&navType=OFFICIAL",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portfolios",
+                        ":portfolioId",
+                        "nav"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "navDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "navType",
+                          "value": "OFFICIAL"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "b5f1c89f-6503-4a09-a5ed-97418db4e30d",
+                          "key": "portfolioId",
+                          "value": "<string>",
+                          "description": "(Required) Geneva portfolio identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns the Net Asset Value (NAV) calculation for a portfolio on a specified date, including per-share/unit NAV, total NAV, and component breakdown."
+                  },
+                  "response": [
+                    {
+                      "id": "6bddcdac-b884-4d30-ab7f-bfa6bf9ba7d3",
+                      "name": "NAV calculation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/portfolios/:portfolioId/nav?navDate=<date>&navType=OFFICIAL",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "portfolios",
+                            ":portfolioId",
+                            "nav"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "navDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "navType",
+                              "value": "OFFICIAL"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "portfolioId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"portfolioId\": \"<string>\",\n  \"navDate\": \"<date>\",\n  \"navType\": \"OFFICIAL\",\n  \"totalNAV\": \"<number>\",\n  \"navPerUnit\": \"<number>\",\n  \"unitsOutstanding\": \"<number>\",\n  \"baseCurrency\": \"<string>\",\n  \"components\": {\n    \"longPositions\": \"<number>\",\n    \"shortPositions\": \"<number>\",\n    \"cashAndEquivalents\": \"<number>\",\n    \"accruedIncome\": \"<number>\",\n    \"liabilities\": \"<number>\"\n  },\n  \"performanceReturn\": {\n    \"mtdReturn\": \"<number>\",\n    \"ytdReturn\": \"<number>\",\n    \"sinceInceptionReturn\": \"<number>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:01:41.000Z",
+                      "updatedAt": "2026-07-28T03:01:41.000Z",
+                      "uid": "35240-6bddcdac-b884-4d30-ab7f-bfa6bf9ba7d3"
+                    },
+                    {
+                      "id": "30791b6f-b2ef-45e2-9bfc-a1ccaddd4566",
+                      "name": "NAV not calculated for specified date",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/portfolios/:portfolioId/nav?navDate=<date>&navType=OFFICIAL",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "portfolios",
+                            ":portfolioId",
+                            "nav"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "navDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "navType",
+                              "value": "OFFICIAL"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "portfolioId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:01:41.000Z",
+                      "updatedAt": "2026-07-28T03:01:41.000Z",
+                      "uid": "35240-30791b6f-b2ef-45e2-9bfc-a1ccaddd4566"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:01:41.000Z",
+                  "updatedAt": "2026-07-28T03:01:41.000Z",
+                  "uid": "35240-b6ef7f74-d23b-4a8f-8ce8-d3d3d3d8d4ec"
+                }
+              ],
+              "id": "aed11825-df4f-4fd0-ba08-5b16dd2ac209",
+              "createdAt": "2026-07-28T03:01:41.000Z",
+              "updatedAt": "2026-07-28T03:01:41.000Z",
+              "uid": "35240-aed11825-df4f-4fd0-ba08-5b16dd2ac209"
+            }
+          ],
+          "id": "e57ef372-9078-41ca-ad20-f1abfeb3d429",
+          "createdAt": "2026-07-28T03:01:41.000Z",
+          "updatedAt": "2026-07-28T03:01:41.000Z",
+          "uid": "35240-e57ef372-9078-41ca-ad20-f1abfeb3d429"
+        }
+      ],
+      "id": "2cbd83cc-3b40-47ed-9b6b-66d95514e7cd",
+      "createdAt": "2026-07-28T03:01:41.000Z",
+      "updatedAt": "2026-07-28T03:01:41.000Z",
+      "uid": "35240-2cbd83cc-3b40-47ed-9b6b-66d95514e7cd"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ssctech.example.com/geneva/v1"
+    }
+  ]
+}
