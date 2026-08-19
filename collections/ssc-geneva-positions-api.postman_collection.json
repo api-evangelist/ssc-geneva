@@ -1,0 +1,169 @@
+{
+  "item": [
+    {
+      "id": "53c35f8f-ba1a-4d17-a941-e3d95fa12b37",
+      "name": "Positions",
+      "description": {
+        "content": "Portfolio positions and holdings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e3687935-f0e7-4467-a39d-788cdd3839b8",
+          "name": "Get portfolio positions",
+          "request": {
+            "name": "Get portfolio positions",
+            "description": {
+              "content": "Returns current or historical positions for a portfolio as of a specified date. Includes long and short positions across equities, fixed income, derivatives, and other asset classes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "portfolios",
+                ":portfolioId",
+                "positions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "asOfDate",
+                  "value": "<date>",
+                  "description": "(Required) Position date (ISO 8601 date)"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeExpired",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "assetClass",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "portfolioId",
+                  "description": "(Required) Geneva portfolio identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a9172bf0-d0ed-430b-a769-a13d8965ac5a",
+              "name": "Portfolio positions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "portfolios",
+                    ":portfolioId",
+                    "positions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asOfDate",
+                      "value": "2026-03-17"
+                    },
+                    {
+                      "key": "includeExpired",
+                      "value": "false"
+                    },
+                    {
+                      "key": "assetClass",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Geneva portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"positions\": [\n    {\n      \"positionId\": \"string\",\n      \"portfolioId\": \"string\",\n      \"securityId\": \"string\",\n      \"isin\": \"string\",\n      \"ticker\": \"string\",\n      \"securityName\": \"string\",\n      \"assetClass\": \"string\",\n      \"asOfDate\": \"1972-02-07\",\n      \"quantity\": 6113.208811344141,\n      \"marketValue\": 1191.152775044061,\n      \"costBasis\": 4094.3437321460174,\n      \"unrealizedGainLoss\": 9448.039976393717,\n      \"currency\": \"string\",\n      \"fxRate\": 1067.8370421130755,\n      \"pricePerUnit\": 9563.185184261825,\n      \"country\": \"string\",\n      \"sector\": \"string\",\n      \"weightPercent\": 3495.363457578554\n    },\n    {\n      \"positionId\": \"string\",\n      \"portfolioId\": \"string\",\n      \"securityId\": \"string\",\n      \"isin\": \"string\",\n      \"ticker\": \"string\",\n      \"securityName\": \"string\",\n      \"assetClass\": \"string\",\n      \"asOfDate\": \"1956-05-08\",\n      \"quantity\": 6405.859153533003,\n      \"marketValue\": 9812.903322734739,\n      \"costBasis\": 4294.1912996298925,\n      \"unrealizedGainLoss\": 1358.7356538984318,\n      \"currency\": \"string\",\n      \"fxRate\": 7912.591354334742,\n      \"pricePerUnit\": 6817.898900420895,\n      \"country\": \"string\",\n      \"sector\": \"string\",\n      \"weightPercent\": 8734.720294472818\n    }\n  ],\n  \"asOfDate\": \"1967-07-20\",\n  \"totalMarketValue\": 2807.6210109099266,\n  \"baseCurrency\": \"string\",\n  \"totalPositions\": 9279\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ssctech.example.com/geneva/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8cc259a2-60d9-447d-982f-026724afc5d2",
+    "name": "SS&C Geneva Fund Accounting Investors Positions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems.\n\nContact Support:\n Name: SS&C Technologies Support",
+      "type": "text/plain"
+    }
+  }
+}

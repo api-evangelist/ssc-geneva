@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SS&C Geneva Fund Accounting Investors API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Investors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List investors in a portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ssctech.example.com/geneva/v1/portfolios/:portfolioId/investors",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "FUND-001",
+                "type": "path",
+                "description": "Geneva portfolio identifier"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns investor accounts with capital allocations for a fund."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SS&C Geneva Fund Accounting Investors NAV API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NAV",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get NAV for a portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ssctech.example.com/geneva/v1/portfolios/:portfolioId/nav",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "FUND-001",
+                "type": "path",
+                "description": "Geneva portfolio identifier"
+              },
+              {
+                "name": "navDate",
+                "value": "2026-03-17",
+                "type": "query"
+              },
+              {
+                "name": "navType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the Net Asset Value (NAV) calculation for a portfolio on a specified date, including per-share/unit NAV, total NAV, and component breakdown."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

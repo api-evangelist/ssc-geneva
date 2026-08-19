@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SS&C Geneva Fund Accounting Investors Portfolios API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Portfolios",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List portfolios",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ssctech.example.com/geneva/v1/portfolios",
+            "params": [
+              {
+                "name": "fundType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "currency",
+                "value": "USD",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of portfolios (funds) accessible to the authenticated user. Supports filtering by fund type, currency, manager, and status."
+        },
+        {
+          "info": {
+            "name": "Retrieve a portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ssctech.example.com/geneva/v1/portfolios/:portfolioId",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "FUND-001",
+                "type": "path",
+                "description": "Geneva portfolio identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific portfolio including AUM and metadata."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

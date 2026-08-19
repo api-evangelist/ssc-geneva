@@ -1,0 +1,218 @@
+{
+  "item": [
+    {
+      "id": "455c6f49-2096-4920-9f38-1a6a964832e7",
+      "name": "NAV",
+      "description": {
+        "content": "Net Asset Value calculation and reporting",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "23c285be-f36e-4aec-9d58-1a9a35da550f",
+          "name": "Get NAV for a portfolio",
+          "request": {
+            "name": "Get NAV for a portfolio",
+            "description": {
+              "content": "Returns the Net Asset Value (NAV) calculation for a portfolio on a specified date, including per-share/unit NAV, total NAV, and component breakdown.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "portfolios",
+                ":portfolioId",
+                "nav"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "navDate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "navType",
+                  "value": "OFFICIAL"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "portfolioId",
+                  "description": "(Required) Geneva portfolio identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "64117a1b-c1d7-44c0-b335-f00b8fe269c2",
+              "name": "NAV calculation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "portfolios",
+                    ":portfolioId",
+                    "nav"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "navDate",
+                      "value": "2026-03-17"
+                    },
+                    {
+                      "key": "navType",
+                      "value": "OFFICIAL"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Geneva portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"portfolioId\": \"string\",\n  \"navDate\": \"2017-12-27\",\n  \"navType\": \"ESTIMATED\",\n  \"totalNAV\": 2925.6138879179484,\n  \"navPerUnit\": 826.7116209418191,\n  \"unitsOutstanding\": 8905.98072599547,\n  \"baseCurrency\": \"string\",\n  \"components\": {\n    \"longPositions\": 6816.133620841452,\n    \"shortPositions\": 7021.893384485538,\n    \"cashAndEquivalents\": 2363.917208364209,\n    \"accruedIncome\": 8964.968024200742,\n    \"liabilities\": 9928.72711428996\n  },\n  \"performanceReturn\": {\n    \"mtdReturn\": 5245.311133329713,\n    \"ytdReturn\": 7244.6073849071,\n    \"sinceInceptionReturn\": 8938.869728102889\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da69d558-c9d1-432b-acd1-81a8fc9c747f",
+              "name": "NAV not calculated for specified date",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "portfolios",
+                    ":portfolioId",
+                    "nav"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "navDate",
+                      "value": "2026-03-17"
+                    },
+                    {
+                      "key": "navType",
+                      "value": "OFFICIAL"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Geneva portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ssctech.example.com/geneva/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "33504280-f6c2-447f-b0eb-0bb3c38bf3d7",
+    "name": "SS&C Geneva Fund Accounting Investors NAV API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems.\n\nContact Support:\n Name: SS&C Technologies Support",
+      "type": "text/plain"
+    }
+  }
+}

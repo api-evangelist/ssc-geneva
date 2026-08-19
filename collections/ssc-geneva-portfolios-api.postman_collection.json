@@ -1,0 +1,370 @@
+{
+  "item": [
+    {
+      "id": "1b66ad10-c9ee-4de5-83b2-941a2e92ec9d",
+      "name": "Portfolios",
+      "description": {
+        "content": "Portfolio and fund management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0e68383e-7c4b-407a-a111-9023ecaf8f30",
+          "name": "List portfolios",
+          "request": {
+            "name": "List portfolios",
+            "description": {
+              "content": "Returns a list of portfolios (funds) accessible to the authenticated user. Supports filtering by fund type, currency, manager, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "portfolios"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fundType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ecd12fe-0d9c-42b9-a8d5-495d445793c4",
+              "name": "List of portfolios",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "portfolios"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fundType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"portfolios\": [\n    {\n      \"portfolioId\": \"string\",\n      \"name\": \"string\",\n      \"shortName\": \"string\",\n      \"fundType\": \"FUND_OF_FUNDS\",\n      \"baseCurrency\": \"OSQ\",\n      \"inceptionDate\": \"1954-01-24\",\n      \"closingDate\": \"1956-03-07\",\n      \"status\": \"INACTIVE\",\n      \"investmentManager\": \"string\",\n      \"administrator\": \"string\",\n      \"custodian\": \"string\",\n      \"aum\": 1001.7574146358698,\n      \"aumDate\": \"1962-04-20\",\n      \"benchmarkIndex\": \"string\"\n    },\n    {\n      \"portfolioId\": \"string\",\n      \"name\": \"string\",\n      \"shortName\": \"string\",\n      \"fundType\": \"SEPARATE_ACCOUNT\",\n      \"baseCurrency\": \"TNO\",\n      \"inceptionDate\": \"1965-08-19\",\n      \"closingDate\": \"2015-11-18\",\n      \"status\": \"ACTIVE\",\n      \"investmentManager\": \"string\",\n      \"administrator\": \"string\",\n      \"custodian\": \"string\",\n      \"aum\": 4933.553923732621,\n      \"aumDate\": \"2007-01-06\",\n      \"benchmarkIndex\": \"string\"\n    }\n  ],\n  \"totalCount\": 1909,\n  \"page\": 578,\n  \"pageSize\": 1782\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c46371d-698d-4f3b-908c-8b2f565b27fd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "portfolios"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fundType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49e771af-5671-416f-bb41-eb368284ec40",
+          "name": "Retrieve a portfolio",
+          "request": {
+            "name": "Retrieve a portfolio",
+            "description": {
+              "content": "Returns detailed information for a specific portfolio including AUM and metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "portfolios",
+                ":portfolioId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "portfolioId",
+                  "description": "(Required) Geneva portfolio identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe71b0cb-a410-4843-aaa5-38ffe33a67b2",
+              "name": "Portfolio details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "portfolios",
+                    ":portfolioId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Geneva portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"portfolioId\": \"string\",\n  \"name\": \"string\",\n  \"shortName\": \"string\",\n  \"fundType\": \"SEPARATE_ACCOUNT\",\n  \"baseCurrency\": \"AGP\",\n  \"inceptionDate\": \"2004-12-04\",\n  \"closingDate\": \"2000-04-24\",\n  \"status\": \"CLOSED\",\n  \"investmentManager\": \"string\",\n  \"administrator\": \"string\",\n  \"custodian\": \"string\",\n  \"aum\": 307.89814520351786,\n  \"aumDate\": \"1978-05-31\",\n  \"benchmarkIndex\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87808c53-b13a-425c-8ae0-60b40deefb21",
+              "name": "Portfolio not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "portfolios",
+                    ":portfolioId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Geneva portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ssctech.example.com/geneva/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a9d03566-ca9b-4f13-91b8-8beec400e7fa",
+    "name": "SS&C Geneva Fund Accounting Investors Portfolios API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems.\n\nContact Support:\n Name: SS&C Technologies Support",
+      "type": "text/plain"
+    }
+  }
+}

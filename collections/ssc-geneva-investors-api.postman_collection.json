@@ -1,0 +1,150 @@
+{
+  "item": [
+    {
+      "id": "cf762761-533b-4e46-bf43-cedb2992e2f7",
+      "name": "Investors",
+      "description": {
+        "content": "Investor accounts and capital activity",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "12bcb8dd-359f-4735-a30f-a44b4e9f1b25",
+          "name": "List investors in a portfolio",
+          "request": {
+            "name": "List investors in a portfolio",
+            "description": {
+              "content": "Returns investor accounts with capital allocations for a fund.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "portfolios",
+                ":portfolioId",
+                "investors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "portfolioId",
+                  "description": "(Required) Geneva portfolio identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36debf61-cd8f-4b6a-9d24-50025342ed48",
+              "name": "Investor list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "portfolios",
+                    ":portfolioId",
+                    "investors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Geneva portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"investors\": [\n    {\n      \"investorId\": \"string\",\n      \"name\": \"string\",\n      \"entityType\": \"INSTITUTION\",\n      \"capitalBalance\": 8806.656014164473,\n      \"unitsHeld\": 5752.536011544344,\n      \"percentageOwnership\": 4490.541315746202,\n      \"inceptionDate\": \"1951-03-09\",\n      \"status\": \"REDEEMED\",\n      \"jurisdiction\": \"string\"\n    },\n    {\n      \"investorId\": \"string\",\n      \"name\": \"string\",\n      \"entityType\": \"INSTITUTION\",\n      \"capitalBalance\": 4393.3632332973575,\n      \"unitsHeld\": 8680.926645750047,\n      \"percentageOwnership\": 9820.489326549976,\n      \"inceptionDate\": \"1955-05-02\",\n      \"status\": \"REDEEMED\",\n      \"jurisdiction\": \"string\"\n    }\n  ],\n  \"totalCount\": 392\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ssctech.example.com/geneva/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "12b3093d-deda-4852-acd0-ef76d14a8882",
+    "name": "SS&C Geneva Fund Accounting Investors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems.\n\nContact Support:\n Name: SS&C Technologies Support",
+      "type": "text/plain"
+    }
+  }
+}

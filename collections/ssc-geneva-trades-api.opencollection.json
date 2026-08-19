@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SS&C Geneva Fund Accounting Investors Trades API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Trades",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List trades for a portfolio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ssctech.example.com/geneva/v1/portfolios/:portfolioId/trades",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "FUND-001",
+                "type": "path",
+                "description": "Geneva portfolio identifier"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tradeStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns trade history for a portfolio within a date range."
+        },
+        {
+          "info": {
+            "name": "Submit a new trade",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ssctech.example.com/geneva/v1/portfolios/:portfolioId/trades",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "FUND-001",
+                "type": "path",
+                "description": "Geneva portfolio identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new trade record in Geneva for processing and settlement. Supports equity, fixed income, FX, and derivative transactions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
