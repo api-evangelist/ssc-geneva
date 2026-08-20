@@ -23,6 +23,13 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ssc-geneva
 tags:
   - Fund Accounting
   - Asset Management
+  - Portfolio-Management
+  - Financial-Services
+  - Hedge Funds
+  - NAV Calculation
+tags_raw:
+  - Fund Accounting
+  - Asset Management
   - Portfolio Management
   - Financial Services
   - Hedge Funds
@@ -68,6 +75,8 @@ apis:
   humanURL: https://www.ssctech.com/
   baseURL: https://api.ssctech.example.com/geneva/v1
   tags:
+  - Portfolio
+  tags_raw:
   - Portfolios
   properties:
   - type: OpenAPI
