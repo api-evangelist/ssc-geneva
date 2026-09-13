@@ -17,6 +17,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "ssc-geneva-investors-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ssc-geneva-nav-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ssc-geneva-portfolios-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ssc-geneva-positions-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ssc-geneva-trades-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }
