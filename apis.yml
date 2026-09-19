@@ -58,6 +58,8 @@ apis:
   humanURL: https://www.ssctech.com/
   baseURL: https://api.ssctech.example.com/geneva/v1
   tags:
+  - Investor
+  tags_raw:
   - Investors
   properties:
   - type: OpenAPI
@@ -120,6 +122,8 @@ apis:
   humanURL: https://www.ssctech.com/
   baseURL: https://api.ssctech.example.com/geneva/v1
   tags:
+  - Trade
+  tags_raw:
   - Trades
   properties:
   - type: OpenAPI
