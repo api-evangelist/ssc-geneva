@@ -1,11 +1,7 @@
 {
   "provider": "ssc-geneva",
   "sources": [
-    "ssc-geneva-investors-api-openapi.yml",
-    "ssc-geneva-nav-api-openapi.yml",
-    "ssc-geneva-portfolios-api-openapi.yml",
-    "ssc-geneva-positions-api-openapi.yml",
-    "ssc-geneva-trades-api-openapi.yml"
+    "_original/ssc-geneva-fund-accounting-openapi.yml"
   ],
   "outputs": [
     "ssc-geneva-investors-api-openapi.yml",
@@ -18,12 +14,15 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "ssc-geneva-investors-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "ssc-geneva-nav-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "ssc-geneva-portfolios-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "ssc-geneva-positions-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "ssc-geneva-trades-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ssc-geneva-fund-accounting-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "ssc-geneva-investors-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ssc-geneva-nav-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ssc-geneva-portfolios-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ssc-geneva-positions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ssc-geneva-trades-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

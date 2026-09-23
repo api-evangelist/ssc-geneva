@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: SS&C Geneva Fund Accounting Investors Portfolios API
+  title: SS&C Geneva Fund Accounting Portfolios API
   description: SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems.
   version: '1.0'
   contact:
@@ -89,29 +89,7 @@ paths:
         '404':
           description: Portfolio not found
 components:
-  parameters:
-    PortfolioId:
-      name: portfolioId
-      in: path
-      required: true
-      description: Geneva portfolio identifier
-      schema:
-        type: string
-      example: FUND-001
   schemas:
-    PortfolioListResponse:
-      type: object
-      properties:
-        portfolios:
-          type: array
-          items:
-            $ref: '#/components/schemas/Portfolio'
-        totalCount:
-          type: integer
-        page:
-          type: integer
-        pageSize:
-          type: integer
     Portfolio:
       type: object
       properties:
@@ -160,6 +138,28 @@ components:
           format: date
         benchmarkIndex:
           type: string
+    PortfolioListResponse:
+      type: object
+      properties:
+        portfolios:
+          type: array
+          items:
+            $ref: '#/components/schemas/Portfolio'
+        totalCount:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+  parameters:
+    PortfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Geneva portfolio identifier
+      schema:
+        type: string
+      example: FUND-001
   securitySchemes:
     BearerAuth:
       type: http
