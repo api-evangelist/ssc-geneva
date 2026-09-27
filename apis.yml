@@ -36,8 +36,8 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ssc-geneva
 tags:
   - Fund Accounting
   - Asset Management
-  - Portfolio-Management
-  - Financial-Services
+  - Portfolio Management
+  - Financial Services
   - Hedge Funds
   - NAV Calculation
 tags_raw:
@@ -47,6 +47,8 @@ tags_raw:
   - Financial Services
   - Hedge Funds
   - NAV Calculation
+  - Portfolio-Management
+  - Financial-Services
 url: https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/apis.yml
 created: '2026-03-18'
 modified: '2026-05-19'

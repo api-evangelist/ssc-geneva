@@ -89,6 +89,15 @@ paths:
         '404':
           description: Portfolio not found
 components:
+  parameters:
+    PortfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Geneva portfolio identifier
+      schema:
+        type: string
+      example: FUND-001
   schemas:
     Portfolio:
       type: object
@@ -151,15 +160,6 @@ components:
           type: integer
         pageSize:
           type: integer
-  parameters:
-    PortfolioId:
-      name: portfolioId
-      in: path
-      required: true
-      description: Geneva portfolio identifier
-      schema:
-        type: string
-      example: FUND-001
   securitySchemes:
     BearerAuth:
       type: http

@@ -157,17 +157,6 @@ components:
         accrued:
           type: number
           description: Accrued interest for fixed income trades
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: string
     TradeCreate:
       type: object
       required:
@@ -212,6 +201,17 @@ components:
         externalTradeId:
           type: string
           description: OMS/external system trade reference
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
   parameters:
     PortfolioId:
       name: portfolioId

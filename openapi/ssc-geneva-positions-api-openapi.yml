@@ -61,32 +61,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PositionListResponse'
 components:
-  parameters:
-    PortfolioId:
-      name: portfolioId
-      in: path
-      required: true
-      description: Geneva portfolio identifier
-      schema:
-        type: string
-      example: FUND-001
   schemas:
-    PositionListResponse:
-      type: object
-      properties:
-        positions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Position'
-        asOfDate:
-          type: string
-          format: date
-        totalMarketValue:
-          type: number
-        baseCurrency:
-          type: string
-        totalPositions:
-          type: integer
     Position:
       type: object
       properties:
@@ -131,6 +106,31 @@ components:
         weightPercent:
           type: number
           description: Portfolio weight percentage
+    PositionListResponse:
+      type: object
+      properties:
+        positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Position'
+        asOfDate:
+          type: string
+          format: date
+        totalMarketValue:
+          type: number
+        baseCurrency:
+          type: string
+        totalPositions:
+          type: integer
+  parameters:
+    PortfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Geneva portfolio identifier
+      schema:
+        type: string
+      example: FUND-001
   securitySchemes:
     BearerAuth:
       type: http
