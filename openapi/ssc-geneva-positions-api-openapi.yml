@@ -62,6 +62,22 @@ paths:
                 $ref: '#/components/schemas/PositionListResponse'
 components:
   schemas:
+    PositionListResponse:
+      type: object
+      properties:
+        positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Position'
+        asOfDate:
+          type: string
+          format: date
+        totalMarketValue:
+          type: number
+        baseCurrency:
+          type: string
+        totalPositions:
+          type: integer
     Position:
       type: object
       properties:
@@ -106,22 +122,6 @@ components:
         weightPercent:
           type: number
           description: Portfolio weight percentage
-    PositionListResponse:
-      type: object
-      properties:
-        positions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Position'
-        asOfDate:
-          type: string
-          format: date
-        totalMarketValue:
-          type: number
-        baseCurrency:
-          type: string
-        totalPositions:
-          type: integer
   parameters:
     PortfolioId:
       name: portfolioId

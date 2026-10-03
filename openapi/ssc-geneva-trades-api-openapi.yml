@@ -90,17 +90,50 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    TradeListResponse:
+    TradeCreate:
       type: object
+      required:
+      - tradeDate
+      - settlementDate
+      - transactionType
+      - securityId
+      - quantity
+      - price
+      - currency
       properties:
-        trades:
-          type: array
-          items:
-            $ref: '#/components/schemas/Trade'
-        totalCount:
-          type: integer
-        page:
-          type: integer
+        tradeDate:
+          type: string
+          format: date
+        settlementDate:
+          type: string
+          format: date
+        transactionType:
+          type: string
+          enum:
+          - BUY
+          - SELL
+          - SHORT_SELL
+          - COVER
+          - SUBSCRIBE
+          - REDEEM
+        securityId:
+          type: string
+        quantity:
+          type: number
+        price:
+          type: number
+        currency:
+          type: string
+        commission:
+          type: number
+          default: 0
+        broker:
+          type: string
+        counterparty:
+          type: string
+        externalTradeId:
+          type: string
+          description: OMS/external system trade reference
     Trade:
       type: object
       properties:
@@ -157,50 +190,17 @@ components:
         accrued:
           type: number
           description: Accrued interest for fixed income trades
-    TradeCreate:
+    TradeListResponse:
       type: object
-      required:
-      - tradeDate
-      - settlementDate
-      - transactionType
-      - securityId
-      - quantity
-      - price
-      - currency
       properties:
-        tradeDate:
-          type: string
-          format: date
-        settlementDate:
-          type: string
-          format: date
-        transactionType:
-          type: string
-          enum:
-          - BUY
-          - SELL
-          - SHORT_SELL
-          - COVER
-          - SUBSCRIBE
-          - REDEEM
-        securityId:
-          type: string
-        quantity:
-          type: number
-        price:
-          type: number
-        currency:
-          type: string
-        commission:
-          type: number
-          default: 0
-        broker:
-          type: string
-        counterparty:
-          type: string
-        externalTradeId:
-          type: string
-          description: OMS/external system trade reference
+        trades:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trade'
+        totalCount:
+          type: integer
+        page:
+          type: integer
     ErrorResponse:
       type: object
       properties:

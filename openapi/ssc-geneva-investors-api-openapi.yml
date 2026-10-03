@@ -54,6 +54,15 @@ components:
         type: string
       example: FUND-001
   schemas:
+    InvestorListResponse:
+      type: object
+      properties:
+        investors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Investor'
+        totalCount:
+          type: integer
     Investor:
       type: object
       properties:
@@ -84,15 +93,6 @@ components:
           - PENDING
         jurisdiction:
           type: string
-    InvestorListResponse:
-      type: object
-      properties:
-        investors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Investor'
-        totalCount:
-          type: integer
   securitySchemes:
     BearerAuth:
       type: http
