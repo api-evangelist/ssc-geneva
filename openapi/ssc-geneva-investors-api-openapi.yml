@@ -44,25 +44,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/InvestorListResponse'
 components:
-  parameters:
-    PortfolioId:
-      name: portfolioId
-      in: path
-      required: true
-      description: Geneva portfolio identifier
-      schema:
-        type: string
-      example: FUND-001
   schemas:
-    InvestorListResponse:
-      type: object
-      properties:
-        investors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Investor'
-        totalCount:
-          type: integer
     Investor:
       type: object
       properties:
@@ -93,6 +75,24 @@ components:
           - PENDING
         jurisdiction:
           type: string
+    InvestorListResponse:
+      type: object
+      properties:
+        investors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Investor'
+        totalCount:
+          type: integer
+  parameters:
+    PortfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Geneva portfolio identifier
+      schema:
+        type: string
+      example: FUND-001
   securitySchemes:
     BearerAuth:
       type: http
