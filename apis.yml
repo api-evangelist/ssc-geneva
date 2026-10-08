@@ -136,6 +136,12 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/json-schema/ssc-geneva-portfolio-schema.json
 common:
+  - type: Plans
+    url: plans/ssc-geneva-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/ssc-geneva-rate-limits.yml
+  - type: FinOps
+    url: finops/ssc-geneva-finops.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/ssc-geneva/overview
   - type: AgenticAccess
