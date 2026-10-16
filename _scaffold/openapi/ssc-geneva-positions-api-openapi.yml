@@ -139,3 +139,8 @@ components:
     BasicAuth:
       type: http
       scheme: basic
+x-provenance:
+  reviewed: '2026-10-17'
+  origin: api-evangelist-generated-placeholder
+  publisher-published: false
+  note: Placeholder generated without any SS&C source. The server https://api.ssctech.example.com/geneva/v1 is a reserved example.com host, the license URL is SS&C's privacy page, and the paths are generic. This is NOT an SS&C-published contract; SS&C publishes none for Geneva. Quarantined — do not restore without provider-published evidence.

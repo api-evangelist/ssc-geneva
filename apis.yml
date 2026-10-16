@@ -2,7 +2,7 @@ aid: ssc-geneva
 name: SS&C Geneva
 description: >-
   SS&C Geneva is an enterprise-grade fund accounting and portfolio management platform for asset managers, hedge funds,
-  and fund administrators. Geneva provides APIs for NAV calculation, trade processing, investor accounting, position
+  and fund administrators. Geneva supports NAV calculation, trade processing, investor accounting, position
   management, and regulatory reporting across multi-asset portfolios including equities, fixed income, derivatives, and
   alternative investments.
 type: Index
@@ -14,24 +14,22 @@ deliveryModel:
   label: Delivery model not determined — needs a product licence on record
   confidence: low
   source:
-  - openapi
+  - website
   generated: '2026-08-28'
   method: derived
 accessModel:
-  pricing: freemium
-  onboarding: self-serve
+  pricing: unknown
+  onboarding: request
   trial: false
   try_now: false
   public: false
-  label: Freemium · Self-serve signup
+  label: Pricing unknown · Enterprise, client-only (on request)
   confidence: medium
-  try_now_blocked_by: example-domain
+  note: Geneva is licensed enterprise software; SS&C publishes no API pricing, plans or self-serve signup.
   source:
-  - plans
-  - authentication
-  - security
-  generated: '2026-09-03'
-  method: derived
+  - website
+  generated: '2026-10-17'
+  method: reviewed
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ssc-geneva.png
 tags:
   - Fund Accounting
@@ -58,98 +56,63 @@ apis:
   name: SS&C Geneva Investors API
   description: Investor accounts and capital activity
   humanURL: https://www.ssctech.com/
-  baseURL: https://api.ssctech.example.com/geneva/v1
+  x-note: SS&C provides Geneva integration documentation to licensed clients; no public reference or machine-readable contract is published.
   tags:
   - Investor
   tags_raw:
   - Investors
   properties:
-  - type: OpenAPI
-    url: openapi/ssc-geneva-investors-api-openapi.yml
   - type: Documentation
     url: https://www.ssctech.com/
-  - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/json-schema/ssc-geneva-portfolio-schema.json
 - aid: ssc-geneva:ssc-geneva-nav-api
   name: SS&C Geneva NAV API
   description: Net Asset Value calculation and reporting
   humanURL: https://www.ssctech.com/
-  baseURL: https://api.ssctech.example.com/geneva/v1
+  x-note: SS&C provides Geneva integration documentation to licensed clients; no public reference or machine-readable contract is published.
   tags:
   - NAV
   properties:
-  - type: OpenAPI
-    url: openapi/ssc-geneva-nav-api-openapi.yml
   - type: Documentation
     url: https://www.ssctech.com/
-  - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/json-schema/ssc-geneva-portfolio-schema.json
 - aid: ssc-geneva:ssc-geneva-portfolios-api
   name: SS&C Geneva Portfolios API
   description: Portfolio and fund management
   humanURL: https://www.ssctech.com/
-  baseURL: https://api.ssctech.example.com/geneva/v1
+  x-note: SS&C provides Geneva integration documentation to licensed clients; no public reference or machine-readable contract is published.
   tags:
   - Portfolio
   tags_raw:
   - Portfolios
   properties:
-  - type: OpenAPI
-    url: openapi/ssc-geneva-portfolios-api-openapi.yml
   - type: Documentation
     url: https://www.ssctech.com/
-  - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/json-schema/ssc-geneva-portfolio-schema.json
 - aid: ssc-geneva:ssc-geneva-positions-api
   name: SS&C Geneva Positions API
   description: Portfolio positions and holdings
   humanURL: https://www.ssctech.com/
-  baseURL: https://api.ssctech.example.com/geneva/v1
+  x-note: SS&C provides Geneva integration documentation to licensed clients; no public reference or machine-readable contract is published.
   tags:
   - Positions
   properties:
-  - type: OpenAPI
-    url: openapi/ssc-geneva-positions-api-openapi.yml
   - type: Documentation
     url: https://www.ssctech.com/
-  - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/json-schema/ssc-geneva-portfolio-schema.json
 - aid: ssc-geneva:ssc-geneva-trades-api
   name: SS&C Geneva Trades API
   description: Trade capture and processing
   humanURL: https://www.ssctech.com/
-  baseURL: https://api.ssctech.example.com/geneva/v1
+  x-note: SS&C provides Geneva integration documentation to licensed clients; no public reference or machine-readable contract is published.
   tags:
   - Trade
   tags_raw:
   - Trades
   properties:
-  - type: OpenAPI
-    url: openapi/ssc-geneva-trades-api-openapi.yml
   - type: Documentation
     url: https://www.ssctech.com/
-  - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/json-schema/ssc-geneva-portfolio-schema.json
 common:
-  - type: Plans
-    url: plans/ssc-geneva-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/ssc-geneva-rate-limits.yml
-  - type: FinOps
-    url: finops/ssc-geneva-finops.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/ssc-geneva/overview
-  - type: AgenticAccess
-    url: agentic-access/ssc-geneva-agentic-access.yml
   - type: DomainSecurity
     url: security/ssc-geneva-domain-security.yml
-  - type: Authentication
-    url: authentication/ssc-geneva-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/ssc-advent
   - type: Website
@@ -164,23 +127,17 @@ common:
     url: https://www.ssctech.com/about/privacy
   - type: Documentation
     url: https://www.ssctech.com/resources
-  - type: OpenAPI
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/openapi/ssc-geneva-fund-accounting-openapi.yml
-  - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/json-schema/ssc-geneva-portfolio-schema.json
-  - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/json-structure/ssc-geneva-fund-structure.json
-  - type: JSONLDContext
-    url: https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/json-ld/ssc-geneva-context.jsonld
-  - type: SpectralRules
-    url: https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/rules/ssc-geneva-rules.yml
-  - type: Vocabulary
-    url: https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/vocabulary/ssc-geneva-vocabulary.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-coverage:
+  state: unreadable
+  reason: no-machine-readable-spec
+  detail: >-
+    SS&C publishes no public API reference or machine-readable specification for Geneva. Integration
+    documentation is provided to licensed clients through SS&C's client portals. A placeholder OpenAPI
+    (placeholder server on a reserved example domain) and everything derived from it were quarantined to _scaffold/ on
+    2026-10-17.
+  reviewed: '2026-10-17'
 x-parent: ss-c-technologies
 x-relationship: product

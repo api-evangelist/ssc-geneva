@@ -64,7 +64,7 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-SS&C Geneva is an enterprise-grade fund accounting and portfolio management platform for asset managers, hedge funds, and fund administrators. Geneva provides APIs for NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios including equities, fixed income, derivatives, and alternative investments.
+SS&C Geneva is an enterprise-grade fund accounting and portfolio management platform for asset managers, hedge funds, and fund administrators. Geneva supports NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios including equities, fixed income, derivatives, and alternative investments.
 
 **APIs.json:** [https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/apis.yml)
 
@@ -88,29 +88,21 @@ SS&C Geneva is an enterprise-grade fund accounting and portfolio management plat
 
 ## APIs
 
-### SS&C Geneva Fund Accounting API
+### SS&C Geneva
 
-SS&C Geneva provides fund accounting and portfolio management APIs for asset managers, hedge funds, and fund administrators. APIs enable NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios. Geneva is an enterprise system with REST APIs for integration with external systems including OMS, custodians, and reporting platforms.
+SS&C provides Geneva integration documentation to licensed clients through its client portals. No public API reference or machine-readable contract is published.
 
 - **Human URL:** [https://www.ssctech.com/](https://www.ssctech.com/)
-- **Base URL:** `https://api.ssctech.example.com/geneva/v1`
 
-#### Tags
+## Not published by SS&C
 
-- Fund Accounting
-- Portfolio Management
-- Asset Management
-- Financial Services
-- NAV Calculation
-- Trade Processing
+Honestly absent — recorded here so their absence is not mistaken for an oversight:
 
-#### Properties
+- No public API reference, base URL, or machine-readable OpenAPI for Geneva
+- No public API pricing or plan tiers
+- No published rate limits or rate-limit response headers
 
-- [Documentation](https://www.ssctech.com/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/openapi/ssc-geneva-fund-accounting-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/json-schema/ssc-geneva-portfolio-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Postman Collection](collections/ssc-geneva-fund-accounting.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ssc-geneva-fund-accounting.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+An earlier placeholder OpenAPI (generated without an SS&C source, on a reserved example domain) and every artifact derived from it were moved to [`_scaffold/`](_scaffold/README.md) on 2026-10-17. They are not SS&C's and are not part of this profile.
 
 ## Common Properties
 
@@ -121,12 +113,6 @@ SS&C Geneva provides fund accounting and portfolio management APIs for asset man
 - [Support](https://www.ssctech.com/about/support-client-portals)
 - [Privacy Policy](https://www.ssctech.com/about/privacy)
 - [Documentation](https://www.ssctech.com/resources)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/openapi/ssc-geneva-fund-accounting-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/json-schema/ssc-geneva-portfolio-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/json-structure/ssc-geneva-fund-structure.json)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/json-ld/ssc-geneva-context.jsonld)
-- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/rules/ssc-geneva-rules.yml)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/vocabulary/ssc-geneva-vocabulary.yml)
 
 ## Maintainers
 
