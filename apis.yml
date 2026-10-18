@@ -1,10 +1,9 @@
 aid: ssc-geneva
 name: SS&C Geneva
-description: >-
-  SS&C Geneva is an enterprise-grade fund accounting and portfolio management platform for asset managers, hedge funds,
-  and fund administrators. Geneva supports NAV calculation, trade processing, investor accounting, position
-  management, and regulatory reporting across multi-asset portfolios including equities, fixed income, derivatives, and
-  alternative investments.
+description: SS&C Geneva is an enterprise-grade fund accounting and portfolio management platform for asset managers,
+  hedge funds, and fund administrators. Geneva supports NAV calculation, trade processing, investor accounting,
+  position management, and regulatory reporting across multi-asset portfolios including equities, fixed income,
+  derivatives, and alternative investments.
 type: Index
 deliveryModel:
   model: unknown
@@ -32,112 +31,67 @@ accessModel:
   method: reviewed
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ssc-geneva.png
 tags:
-  - Fund Accounting
-  - Asset Management
-  - Portfolio Management
-  - Financial Services
-  - Hedge Funds
-  - NAV Calculation
+- Fund Accounting
+- Asset Management
+- Portfolio Management
+- Financial Services
+- Hedge Funds
+- NAV Calculation
 tags_raw:
-  - Fund Accounting
-  - Asset Management
-  - Portfolio Management
-  - Financial Services
-  - Hedge Funds
-  - NAV Calculation
-  - Portfolio-Management
-  - Financial-Services
+- Fund Accounting
+- Asset Management
+- Portfolio Management
+- Financial Services
+- Hedge Funds
+- NAV Calculation
+- Portfolio-Management
+- Financial-Services
 url: https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/apis.yml
 created: '2026-03-18'
 modified: '2026-05-19'
 specificationVersion: '0.23'
 apis:
-- aid: ssc-geneva:ssc-geneva-investors-api
-  name: SS&C Geneva Investors API
-  description: Investor accounts and capital activity
+- aid: ssc-geneva:ssc-geneva
+  name: SS&C Geneva
+  description: SS&C Geneva is a portfolio management and fund accounting platform. SS&C provides Geneva integration
+    documentation to licensed clients through its client portals; no public API reference, OpenAPI or base URL is
+    published.
   humanURL: https://www.ssctech.com/
-  x-note: SS&C provides Geneva integration documentation to licensed clients; no public reference or machine-readable contract is published.
   tags:
   - Investor
-  tags_raw:
-  - Investors
   properties:
   - type: Documentation
     url: https://www.ssctech.com/
-- aid: ssc-geneva:ssc-geneva-nav-api
-  name: SS&C Geneva NAV API
-  description: Net Asset Value calculation and reporting
-  humanURL: https://www.ssctech.com/
-  x-note: SS&C provides Geneva integration documentation to licensed clients; no public reference or machine-readable contract is published.
-  tags:
-  - NAV
-  properties:
-  - type: Documentation
-    url: https://www.ssctech.com/
-- aid: ssc-geneva:ssc-geneva-portfolios-api
-  name: SS&C Geneva Portfolios API
-  description: Portfolio and fund management
-  humanURL: https://www.ssctech.com/
-  x-note: SS&C provides Geneva integration documentation to licensed clients; no public reference or machine-readable contract is published.
-  tags:
-  - Portfolio
-  tags_raw:
-  - Portfolios
-  properties:
-  - type: Documentation
-    url: https://www.ssctech.com/
-- aid: ssc-geneva:ssc-geneva-positions-api
-  name: SS&C Geneva Positions API
-  description: Portfolio positions and holdings
-  humanURL: https://www.ssctech.com/
-  x-note: SS&C provides Geneva integration documentation to licensed clients; no public reference or machine-readable contract is published.
-  tags:
-  - Positions
-  properties:
-  - type: Documentation
-    url: https://www.ssctech.com/
-- aid: ssc-geneva:ssc-geneva-trades-api
-  name: SS&C Geneva Trades API
-  description: Trade capture and processing
-  humanURL: https://www.ssctech.com/
-  x-note: SS&C provides Geneva integration documentation to licensed clients; no public reference or machine-readable contract is published.
-  tags:
-  - Trade
-  tags_raw:
-  - Trades
-  properties:
-  - type: Documentation
-    url: https://www.ssctech.com/
+  x-note: The five per-domain API entries (Investors, NAV, Portfolios, Positions, Trades) were split from a placeholder
+    contract our pipeline generated without a source; removed 2026-10-18 (see _scaffold/README.md).
 common:
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/ssc-geneva/overview
-  - type: DomainSecurity
-    url: security/ssc-geneva-domain-security.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/ssc-advent
-  - type: Website
-    url: https://www.ssctech.com/
-  - type: Portal
-    url: https://www.ssctech.com/products
-  - type: Blog
-    url: https://www.ssctech.com/blog
-  - type: Support
-    url: https://www.ssctech.com/about/support-client-portals
-  - type: PrivacyPolicy
-    url: https://www.ssctech.com/about/privacy
-  - type: Documentation
-    url: https://www.ssctech.com/resources
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/ssc-geneva/overview
+- type: DomainSecurity
+  url: security/ssc-geneva-domain-security.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/ssc-advent
+- type: Website
+  url: https://www.ssctech.com/
+- type: Portal
+  url: https://www.ssctech.com/products
+- type: Blog
+  url: https://www.ssctech.com/blog
+- type: Support
+  url: https://www.ssctech.com/about/support-client-portals
+- type: PrivacyPolicy
+  url: https://www.ssctech.com/about/privacy
+- type: Documentation
+  url: https://www.ssctech.com/resources
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
 x-coverage:
   state: unreadable
   reason: no-machine-readable-spec
-  detail: >-
-    SS&C publishes no public API reference or machine-readable specification for Geneva. Integration
-    documentation is provided to licensed clients through SS&C's client portals. A placeholder OpenAPI
-    (placeholder server on a reserved example domain) and everything derived from it were quarantined to _scaffold/ on
-    2026-10-17.
+  detail: SS&C publishes no public API reference or machine-readable specification for Geneva. Integration documentation
+    is provided to licensed clients through SS&C's client portals. A placeholder OpenAPI (placeholder server on
+    a reserved example domain) and everything derived from it were quarantined to _scaffold/ on 2026-10-17.
   reviewed: '2026-10-17'
 x-parent: ss-c-technologies
 x-relationship: product
