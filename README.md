@@ -1,4 +1,4 @@
-# SS&C Geneva (ssc-geneva)
+# SS&C Geneva
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,55 +66,115 @@
 
 SS&C Geneva is an enterprise-grade fund accounting and portfolio management platform for asset managers, hedge funds, and fund administrators. Geneva supports NAV calculation, trade processing, investor accounting, position management, and regulatory reporting across multi-asset portfolios including equities, fixed income, derivatives, and alternative investments.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/ssc-geneva/refs/heads/main/apis.yml)
+**Areas:** Fund Accounting · Asset Management · Portfolio Management · Financial Services · Hedge Funds · NAV Calculation
 
-## Scope
+## SS&C Geneva on APIs.io
 
-- **Type:** Index
+Everything profiled for SS&C Geneva is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ssc-geneva/](https://apis.io/providers/ssc-geneva/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (5)
 
-- Fund Accounting
-- Asset Management
-- Portfolio Management
-- Financial Services
-- Hedge Funds
-- NAV Calculation
+- [SS&C Geneva Investors API](https://apis.io/apis/ssc-geneva/ssc-geneva-investors-api/) — Investor accounts and capital activity
+- [SS&C Geneva NAV API](https://apis.io/apis/ssc-geneva/ssc-geneva-nav-api/) — Net Asset Value calculation and reporting
+- [SS&C Geneva Portfolios API](https://apis.io/apis/ssc-geneva/ssc-geneva-portfolios-api/) — Portfolio and fund management
+- [SS&C Geneva Positions API](https://apis.io/apis/ssc-geneva/ssc-geneva-positions-api/) — Portfolio positions and holdings
+- [SS&C Geneva Trades API](https://apis.io/apis/ssc-geneva/ssc-geneva-trades-api/) — Trade capture and processing
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-18
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Vocabulary (1)
 
-### SS&C Geneva
+The provider's domain terms, defined.
 
-SS&C provides Geneva integration documentation to licensed clients through its client portals. No public API reference or machine-readable contract is published.
+- [SS&C Geneva Fund Accounting Vocabulary](https://apis.io/vocabularies/ssc-geneva/ssc-geneva-vocabulary/)
 
-- **Human URL:** [https://www.ssctech.com/](https://www.ssctech.com/)
+#### Security (1)
 
-## Not published by SS&C
+Authentication, trust centre, and vulnerability disclosure.
 
-Honestly absent — recorded here so their absence is not mistaken for an oversight:
+- [Ssc Geneva Domain Security](https://apis.io/security/ssc-geneva/ssc-geneva-domain-security/)
 
-- No public API reference, base URL, or machine-readable OpenAPI for Geneva
-- No public API pricing or plan tiers
-- No published rate limits or rate-limit response headers
+#### Plans and pricing (1)
 
-An earlier placeholder OpenAPI (generated without an SS&C source, on a reserved example domain) and every artifact derived from it were moved to [`_scaffold/`](_scaffold/README.md) on 2026-10-17. They are not SS&C's and are not part of this profile.
+Published plans, tiers and prices.
 
-## Common Properties
+- [Ssc Geneva Plans Pricing](https://apis.io/plans/ssc-geneva/ssc-geneva-plans-pricing/)
 
-- [LinkedIn](https://www.linkedin.com/company/ssc-advent)
+#### Rate limits (1)
+
+Published request limits.
+
+- [Ssc Geneva Rate Limits](https://apis.io/rate-limits/ssc-geneva/ssc-geneva-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Ssc Geneva Finops](https://apis.io/finops/ssc-geneva/ssc-geneva-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.ssctech.com/)
-- [Portal](https://www.ssctech.com/products)
-- [Blog](https://www.ssctech.com/blog)
-- [Support](https://www.ssctech.com/about/support-client-portals)
-- [Privacy Policy](https://www.ssctech.com/about/privacy)
 - [Documentation](https://www.ssctech.com/resources)
+- [Support](https://www.ssctech.com/about/support-client-portals)
+- [Blog](https://www.ssctech.com/blog)
+- [Privacy policy](https://www.ssctech.com/about/privacy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 13.1** — emerging · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 30.5 |
+| Access clarity | 10.5 |
+
+**Agent readiness 0.0** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 9.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ssc-geneva/](https://apis.io/providers/ssc-geneva/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for SS&C Geneva: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ssc-geneva/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
